@@ -1,0 +1,137 @@
+{
+  "updated_at": "2026-11-12T01:53:00Z",
+  "games": {
+    "discovered": 10912,
+    "analysed": 203,
+    "waiting": 10709
+  },
+  "results": {
+    "wins": 77,
+    "draws": 3,
+    "losses": 123,
+    "score_rate_pct": 38.7,
+    "win_rate_pct": 37.9
+  },
+  "accuracy": {
+    "user_average_cpl": 119,
+    "opponent_average_cpl": 104
+  },
+  "phases": [
+    {
+      "name": "Opening",
+      "average_cpl": 105.7,
+      "games_with_data": 100
+    },
+    {
+      "name": "Middlegame",
+      "average_cpl": 144.5,
+      "games_with_data": 82
+    },
+    {
+      "name": "Endgame",
+      "average_cpl": 65.9,
+      "games_with_data": 17
+    }
+  ],
+  "time_controls": [
+    {
+      "name": "Blitz",
+      "games": 165,
+      "average_cpl": 116.7
+    },
+    {
+      "name": "Bullet",
+      "games": 29,
+      "average_cpl": 135.5
+    },
+    {
+      "name": "Rapid",
+      "games": 8,
+      "average_cpl": 113.7
+    },
+    {
+      "name": "Daily",
+      "games": 1,
+      "average_cpl": 63
+    }
+  ],
+  "colours": [
+    {
+      "name": "White",
+      "games": 101,
+      "average_cpl": 116.4
+    },
+    {
+      "name": "Black",
+      "games": 102,
+      "average_cpl": 121.6
+    }
+  ],
+  "openings": [
+    {
+      "name": "King's Pawn Opening — King's Knight Variation",
+      "games": 11,
+      "score_pct": 36.4,
+      "average_cpl": 143
+    },
+    {
+      "name": "Queen's Pawn Opening — Chigorin Variation",
+      "games": 11,
+      "score_pct": 22.7,
+      "average_cpl": 110.9
+    },
+    {
+      "name": "Queen's Pawn Opening — Mikenas Defense",
+      "games": 6,
+      "score_pct": 83.3,
+      "average_cpl": 104.1
+    },
+    {
+      "name": "Englund Gambit",
+      "games": 6,
+      "score_pct": 33.3,
+      "average_cpl": 135.8
+    },
+    {
+      "name": "French Defense — Normal Variation",
+      "games": 4,
+      "score_pct": 100,
+      "average_cpl": 131.8
+    },
+    {
+      "name": "Bishop's Opening — Berlin Defense",
+      "games": 4,
+      "score_pct": 50,
+      "average_cpl": 155.5
+    },
+    {
+      "name": "Queen's Pawn Opening — 1...d5 2.e3",
+      "games": 4,
+      "score_pct": 50,
+      "average_cpl": 112.1
+    },
+    {
+      "name": "Englund Gambit — 2.dxe5",
+      "games": 3,
+      "score_pct": 66.7,
+      "average_cpl": 75
+    },
+    {
+      "name": "Queen's Pawn Opening — 1...d5",
+      "games": 3,
+      "score_pct": 66.7,
+      "average_cpl": 150.5
+    },
+    {
+      "name": "King's Pawn Opening — 1...e5",
+      "games": 3,
+      "score_pct": 33.3,
+      "average_cpl": 48.3
+    }
+  ],
+  "safeguards": {
+    "cpl_is_estimate": true,
+    "exclude_game_level_data": true,
+    "opening_sample_warning_below_games": 10
+  }
+}
