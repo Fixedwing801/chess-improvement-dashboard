@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-11-13T22:23:05.072686+00:00",
+  "updated_at": "2026-11-13T23:19:27.731191+00:00",
   "games": {
     "discovered": 10959,
-    "analysed": 3603,
-    "waiting": 7356
+    "analysed": 3703,
+    "waiting": 7256
   },
   "results": {
-    "wins": 1746,
-    "draws": 101,
-    "losses": 1756,
-    "score_rate_pct": 49.9,
-    "win_rate_pct": 48.46
+    "wins": 1801,
+    "draws": 104,
+    "losses": 1798,
+    "score_rate_pct": 50.0,
+    "win_rate_pct": 48.64
   },
   "accuracy": {
-    "user_average_cpl": 106.2,
-    "opponent_average_cpl": 102.2
+    "user_average_cpl": 105.8,
+    "opponent_average_cpl": 101.9
   },
   "phases": [
     {
       "name": "Opening",
-      "average_cpl": 90.4,
-      "games_with_data": 3499
+      "average_cpl": 89.8,
+      "games_with_data": 3599
     },
     {
       "name": "Middlegame",
-      "average_cpl": 127.5,
-      "games_with_data": 3132
+      "average_cpl": 127.3,
+      "games_with_data": 3225
     },
     {
       "name": "Endgame",
-      "average_cpl": 62.8,
-      "games_with_data": 686
+      "average_cpl": 62.1,
+      "games_with_data": 717
     }
   ],
   "time_controls": [
     {
       "name": "Blitz",
-      "games": 1506,
-      "average_cpl": 110.9
+      "games": 1606,
+      "average_cpl": 109.7
     },
     {
       "name": "Bullet",
@@ -58,13 +58,13 @@
   "colours": [
     {
       "name": "White",
-      "games": 1802,
+      "games": 1853,
       "average_cpl": 104.9
     },
     {
       "name": "Black",
-      "games": 1801,
-      "average_cpl": 107.4
+      "games": 1850,
+      "average_cpl": 106.7
     }
   ],
   "openings": [
@@ -88,9 +88,9 @@
     },
     {
       "name": "Reti Opening Kingside Fianchetto Variation 2.e4 Bg7",
-      "games": 78,
+      "games": 80,
       "score_pct": 53.8,
-      "average_cpl": 88.7
+      "average_cpl": 88.0
     },
     {
       "name": "Scandinavian Defense",
@@ -112,9 +112,9 @@
     },
     {
       "name": "Modern Defense with 1 e4 2.d4 Bg7",
-      "games": 53,
-      "score_pct": 35.8,
-      "average_cpl": 96.5
+      "games": 56,
+      "score_pct": 39.3,
+      "average_cpl": 95.5
     },
     {
       "name": "Modern Defense with 1 e4 2.Bc4 Bg7 3.Qf3",
@@ -141,6 +141,12 @@
       "average_cpl": 100.1
     },
     {
+      "name": "Van t Kruijs Opening 1...g6",
+      "games": 37,
+      "score_pct": 44.6,
+      "average_cpl": 95.9
+    },
+    {
       "name": "Bishops Opening",
       "games": 35,
       "score_pct": 57.1,
@@ -159,12 +165,6 @@
       "average_cpl": 121.9
     },
     {
-      "name": "Van t Kruijs Opening 1...g6",
-      "games": 33,
-      "score_pct": 40.9,
-      "average_cpl": 97.6
-    },
-    {
       "name": "Scotch Game",
       "games": 32,
       "score_pct": 65.6,
@@ -178,9 +178,9 @@
     },
     {
       "name": "French Defense Normal Variation",
-      "games": 29,
-      "score_pct": 51.7,
-      "average_cpl": 102.2
+      "games": 31,
+      "score_pct": 54.8,
+      "average_cpl": 98.9
     },
     {
       "name": "Center Game",
@@ -193,6 +193,18 @@
       "games": 26,
       "score_pct": 65.4,
       "average_cpl": 87.9
+    },
+    {
+      "name": "Modern Defense with 1 e4 2.d4 Bg7 3.Nf3",
+      "games": 26,
+      "score_pct": 61.5,
+      "average_cpl": 99.6
+    },
+    {
+      "name": "Modern Defense with 1 d4",
+      "games": 26,
+      "score_pct": 55.8,
+      "average_cpl": 92.5
     },
     {
       "name": "Queens Pawn Opening Accelerated London System",
@@ -213,12 +225,6 @@
       "average_cpl": 91.6
     },
     {
-      "name": "Modern Defense with 1 e4 2.d4 Bg7 3.Nf3",
-      "games": 24,
-      "score_pct": 58.3,
-      "average_cpl": 100.9
-    },
-    {
       "name": "Scotch Game 3...d6",
       "games": 24,
       "score_pct": 58.3,
@@ -232,21 +238,15 @@
     },
     {
       "name": "Modern Defense with 1 e4 2.d4 Bg7 3.Nf3 d6",
-      "games": 21,
-      "score_pct": 52.4,
-      "average_cpl": 89.3
+      "games": 22,
+      "score_pct": 54.5,
+      "average_cpl": 86.8
     },
     {
-      "name": "Modern Defense with 1 d4",
+      "name": "Nimzowitsch Larsen Attack Classical Variation 2.Bb2",
       "games": 21,
-      "score_pct": 50.0,
-      "average_cpl": 96.6
-    },
-    {
-      "name": "Modern Defense with 1 e4 2.d3 Bg7",
-      "games": 21,
-      "score_pct": 33.3,
-      "average_cpl": 116.3
+      "score_pct": 47.6,
+      "average_cpl": 94.0
     }
   ],
   "safeguards": {
