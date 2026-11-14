@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-11-13T23:19:27.731191+00:00",
+  "updated_at": "2026-11-14T00:17:32.147281+00:00",
   "games": {
     "discovered": 10959,
-    "analysed": 3703,
-    "waiting": 7256
+    "analysed": 3803,
+    "waiting": 7156
   },
   "results": {
-    "wins": 1801,
-    "draws": 104,
-    "losses": 1798,
+    "wins": 1847,
+    "draws": 111,
+    "losses": 1845,
     "score_rate_pct": 50.0,
-    "win_rate_pct": 48.64
+    "win_rate_pct": 48.57
   },
   "accuracy": {
-    "user_average_cpl": 105.8,
-    "opponent_average_cpl": 101.9
+    "user_average_cpl": 105.4,
+    "opponent_average_cpl": 101.4
   },
   "phases": [
     {
       "name": "Opening",
-      "average_cpl": 89.8,
-      "games_with_data": 3599
+      "average_cpl": 89.3,
+      "games_with_data": 3699
     },
     {
       "name": "Middlegame",
-      "average_cpl": 127.3,
-      "games_with_data": 3225
+      "average_cpl": 126.8,
+      "games_with_data": 3319
     },
     {
       "name": "Endgame",
-      "average_cpl": 62.1,
-      "games_with_data": 717
+      "average_cpl": 61.4,
+      "games_with_data": 752
     }
   ],
   "time_controls": [
     {
       "name": "Blitz",
-      "games": 1606,
-      "average_cpl": 109.7
+      "games": 1706,
+      "average_cpl": 108.6
     },
     {
       "name": "Bullet",
@@ -58,13 +58,13 @@
   "colours": [
     {
       "name": "White",
-      "games": 1853,
-      "average_cpl": 104.9
+      "games": 1902,
+      "average_cpl": 104.5
     },
     {
       "name": "Black",
-      "games": 1850,
-      "average_cpl": 106.7
+      "games": 1901,
+      "average_cpl": 106.2
     }
   ],
   "openings": [
@@ -88,9 +88,9 @@
     },
     {
       "name": "Reti Opening Kingside Fianchetto Variation 2.e4 Bg7",
-      "games": 80,
-      "score_pct": 53.8,
-      "average_cpl": 88.0
+      "games": 81,
+      "score_pct": 53.1,
+      "average_cpl": 88.9
     },
     {
       "name": "Scandinavian Defense",
@@ -244,9 +244,9 @@
     },
     {
       "name": "Nimzowitsch Larsen Attack Classical Variation 2.Bb2",
-      "games": 21,
-      "score_pct": 47.6,
-      "average_cpl": 94.0
+      "games": 22,
+      "score_pct": 45.5,
+      "average_cpl": 91.2
     }
   ],
   "safeguards": {
