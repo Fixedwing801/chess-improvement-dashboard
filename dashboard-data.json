@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-11-14T03:25:45.296197+00:00",
+  "updated_at": "2026-11-14T04:32:52.439185+00:00",
   "games": {
     "discovered": 10963,
-    "analysed": 4003,
-    "waiting": 6960
+    "analysed": 4103,
+    "waiting": 6860
   },
   "results": {
-    "wins": 1940,
-    "draws": 123,
-    "losses": 1940,
-    "score_rate_pct": 50.0,
-    "win_rate_pct": 48.46
+    "wins": 1991,
+    "draws": 126,
+    "losses": 1986,
+    "score_rate_pct": 50.1,
+    "win_rate_pct": 48.53
   },
   "accuracy": {
-    "user_average_cpl": 104.8,
-    "opponent_average_cpl": 100.8
+    "user_average_cpl": 104.4,
+    "opponent_average_cpl": 100.5
   },
   "phases": [
     {
       "name": "Opening",
-      "average_cpl": 88.8,
-      "games_with_data": 3899
+      "average_cpl": 88.3,
+      "games_with_data": 3999
     },
     {
       "name": "Middlegame",
-      "average_cpl": 125.8,
-      "games_with_data": 3504
+      "average_cpl": 125.5,
+      "games_with_data": 3600
     },
     {
       "name": "Endgame",
-      "average_cpl": 60.2,
-      "games_with_data": 816
+      "average_cpl": 59.5,
+      "games_with_data": 843
     }
   ],
   "time_controls": [
     {
       "name": "Blitz",
-      "games": 1893,
-      "average_cpl": 106.9
+      "games": 1993,
+      "average_cpl": 106.0
     },
     {
       "name": "Bullet",
@@ -58,13 +58,13 @@
   "colours": [
     {
       "name": "White",
-      "games": 2000,
-      "average_cpl": 104.0
+      "games": 2052,
+      "average_cpl": 103.4
     },
     {
       "name": "Black",
-      "games": 2003,
-      "average_cpl": 105.7
+      "games": 2051,
+      "average_cpl": 105.4
     }
   ],
   "openings": [
@@ -82,9 +82,9 @@
     },
     {
       "name": "Petrovs Defense Classical Variation",
-      "games": 86,
-      "score_pct": 64.0,
-      "average_cpl": 102.6
+      "games": 87,
+      "score_pct": 63.2,
+      "average_cpl": 102.5
     },
     {
       "name": "Reti Opening Kingside Fianchetto Variation 2.e4 Bg7",
@@ -142,9 +142,15 @@
     },
     {
       "name": "Van t Kruijs Opening 1...g6",
-      "games": 37,
-      "score_pct": 44.6,
-      "average_cpl": 95.9
+      "games": 38,
+      "score_pct": 46.1,
+      "average_cpl": 94.3
+    },
+    {
+      "name": "Queens Pawn Opening Chigorin Variation",
+      "games": 35,
+      "score_pct": 58.6,
+      "average_cpl": 107.8
     },
     {
       "name": "Bishops Opening",
@@ -153,10 +159,10 @@
       "average_cpl": 136.4
     },
     {
-      "name": "Queens Pawn Opening Chigorin Variation",
-      "games": 34,
-      "score_pct": 57.4,
-      "average_cpl": 107.7
+      "name": "Van t Kruijs Opening 1...e5",
+      "games": 35,
+      "score_pct": 42.9,
+      "average_cpl": 121.8
     },
     {
       "name": "Scotch Game",
@@ -165,22 +171,16 @@
       "average_cpl": 97.1
     },
     {
-      "name": "Van t Kruijs Opening 1...e5",
-      "games": 33,
-      "score_pct": 45.5,
-      "average_cpl": 121.9
-    },
-    {
       "name": "Bishops Opening Berlin Defense",
-      "games": 31,
-      "score_pct": 58.1,
-      "average_cpl": 117.0
+      "games": 32,
+      "score_pct": 59.4,
+      "average_cpl": 116.8
     },
     {
       "name": "French Defense Normal Variation",
-      "games": 31,
-      "score_pct": 54.8,
-      "average_cpl": 98.9
+      "games": 32,
+      "score_pct": 56.2,
+      "average_cpl": 98.1
     },
     {
       "name": "Center Game",
@@ -207,16 +207,16 @@
       "average_cpl": 92.5
     },
     {
+      "name": "Queens Pawn Opening 1...d5",
+      "games": 26,
+      "score_pct": 55.8,
+      "average_cpl": 112.2
+    },
+    {
       "name": "Queens Pawn Opening Accelerated London System",
       "games": 26,
       "score_pct": 30.8,
       "average_cpl": 105.0
-    },
-    {
-      "name": "Queens Pawn Opening 1...d5",
-      "games": 25,
-      "score_pct": 58.0,
-      "average_cpl": 112.9
     },
     {
       "name": "Ponziani Opening Jaenisch Counterattack 4.d4",
@@ -225,28 +225,28 @@
       "average_cpl": 91.6
     },
     {
+      "name": "Queens Pawn Opening Zukertort Chigorin Variation",
+      "games": 24,
+      "score_pct": 58.3,
+      "average_cpl": 115.6
+    },
+    {
       "name": "Scotch Game 3...d6",
       "games": 24,
       "score_pct": 58.3,
       "average_cpl": 84.3
     },
     {
+      "name": "Nimzowitsch Defense",
+      "games": 24,
+      "score_pct": 41.7,
+      "average_cpl": 129.1
+    },
+    {
       "name": "Scotch Game 3...exd4 4.Nxd4 Nxd4 5.Qxd4",
       "games": 23,
       "score_pct": 47.8,
       "average_cpl": 105.0
-    },
-    {
-      "name": "Nimzowitsch Defense",
-      "games": 23,
-      "score_pct": 39.1,
-      "average_cpl": 130.4
-    },
-    {
-      "name": "Queens Pawn Opening Zukertort Chigorin Variation",
-      "games": 22,
-      "score_pct": 56.8,
-      "average_cpl": 115.0
     }
   ],
   "safeguards": {
