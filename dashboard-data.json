@@ -1,48 +1,48 @@
 {
-  "updated_at": "2026-11-14T01:46:40.194006+00:00",
+  "updated_at": "2026-11-14T03:25:45.296197+00:00",
   "games": {
     "discovered": 10963,
-    "analysed": 3903,
-    "waiting": 7060
+    "analysed": 4003,
+    "waiting": 6960
   },
   "results": {
-    "wins": 1888,
-    "draws": 119,
-    "losses": 1896,
-    "score_rate_pct": 49.9,
-    "win_rate_pct": 48.37
+    "wins": 1940,
+    "draws": 123,
+    "losses": 1940,
+    "score_rate_pct": 50.0,
+    "win_rate_pct": 48.46
   },
   "accuracy": {
-    "user_average_cpl": 105.1,
-    "opponent_average_cpl": 101.0
+    "user_average_cpl": 104.8,
+    "opponent_average_cpl": 100.8
   },
   "phases": [
     {
       "name": "Opening",
-      "average_cpl": 89.1,
-      "games_with_data": 3799
+      "average_cpl": 88.8,
+      "games_with_data": 3899
     },
     {
       "name": "Middlegame",
-      "average_cpl": 126.3,
-      "games_with_data": 3407
+      "average_cpl": 125.8,
+      "games_with_data": 3504
     },
     {
       "name": "Endgame",
-      "average_cpl": 61.0,
-      "games_with_data": 792
+      "average_cpl": 60.2,
+      "games_with_data": 816
     }
   ],
   "time_controls": [
     {
       "name": "Blitz",
-      "games": 1806,
-      "average_cpl": 107.9
+      "games": 1893,
+      "average_cpl": 106.9
     },
     {
       "name": "Bullet",
-      "games": 841,
-      "average_cpl": 106.9
+      "games": 854,
+      "average_cpl": 107.1
     },
     {
       "name": "Daily",
@@ -58,13 +58,13 @@
   "colours": [
     {
       "name": "White",
-      "games": 1951,
-      "average_cpl": 104.2
+      "games": 2000,
+      "average_cpl": 104.0
     },
     {
       "name": "Black",
-      "games": 1952,
-      "average_cpl": 106.0
+      "games": 2003,
+      "average_cpl": 105.7
     }
   ],
   "openings": [
@@ -76,9 +76,9 @@
     },
     {
       "name": "Kings Pawn Opening 1...e5",
-      "games": 122,
-      "score_pct": 48.4,
-      "average_cpl": 133.7
+      "games": 123,
+      "score_pct": 48.8,
+      "average_cpl": 133.3
     },
     {
       "name": "Petrovs Defense Classical Variation",
@@ -237,16 +237,16 @@
       "average_cpl": 105.0
     },
     {
-      "name": "Modern Defense with 1 e4 2.d4 Bg7 3.Nf3 d6",
-      "games": 22,
-      "score_pct": 54.5,
-      "average_cpl": 86.8
+      "name": "Nimzowitsch Defense",
+      "games": 23,
+      "score_pct": 39.1,
+      "average_cpl": 130.4
     },
     {
-      "name": "Nimzowitsch Larsen Attack Classical Variation 2.Bb2",
+      "name": "Queens Pawn Opening Zukertort Chigorin Variation",
       "games": 22,
-      "score_pct": 45.5,
-      "average_cpl": 91.2
+      "score_pct": 56.8,
+      "average_cpl": 115.0
     }
   ],
   "safeguards": {
