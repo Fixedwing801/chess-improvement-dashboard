@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-11-14T05:34:27.062882+00:00",
+  "updated_at": "2026-11-14T06:26:04.130172+00:00",
   "games": {
     "discovered": 10963,
-    "analysed": 4203,
-    "waiting": 6760
+    "analysed": 4303,
+    "waiting": 6660
   },
   "results": {
-    "wins": 2037,
-    "draws": 131,
-    "losses": 2035,
+    "wins": 2083,
+    "draws": 134,
+    "losses": 2086,
     "score_rate_pct": 50.0,
-    "win_rate_pct": 48.47
+    "win_rate_pct": 48.41
   },
   "accuracy": {
-    "user_average_cpl": 104.1,
-    "opponent_average_cpl": 100.2
+    "user_average_cpl": 103.9,
+    "opponent_average_cpl": 99.8
   },
   "phases": [
     {
       "name": "Opening",
-      "average_cpl": 88.0,
-      "games_with_data": 4099
+      "average_cpl": 87.7,
+      "games_with_data": 4199
     },
     {
       "name": "Middlegame",
-      "average_cpl": 125.1,
-      "games_with_data": 3693
+      "average_cpl": 124.7,
+      "games_with_data": 3786
     },
     {
       "name": "Endgame",
-      "average_cpl": 58.8,
-      "games_with_data": 879
+      "average_cpl": 58.9,
+      "games_with_data": 903
     }
   ],
   "time_controls": [
     {
       "name": "Blitz",
-      "games": 2090,
-      "average_cpl": 105.4
+      "games": 2190,
+      "average_cpl": 104.8
     },
     {
       "name": "Bullet",
@@ -58,13 +58,13 @@
   "colours": [
     {
       "name": "White",
-      "games": 2101,
-      "average_cpl": 103.0
+      "games": 2153,
+      "average_cpl": 102.7
     },
     {
       "name": "Black",
-      "games": 2102,
-      "average_cpl": 105.3
+      "games": 2150,
+      "average_cpl": 105.1
     }
   ],
   "openings": [
@@ -76,15 +76,15 @@
     },
     {
       "name": "Kings Pawn Opening 1...e5",
-      "games": 127,
-      "score_pct": 50.4,
-      "average_cpl": 132.9
+      "games": 130,
+      "score_pct": 50.8,
+      "average_cpl": 132.5
     },
     {
       "name": "Petrovs Defense Classical Variation",
-      "games": 88,
-      "score_pct": 62.5,
-      "average_cpl": 101.7
+      "games": 89,
+      "score_pct": 61.8,
+      "average_cpl": 102.0
     },
     {
       "name": "Reti Opening Kingside Fianchetto Variation 2.e4 Bg7",
@@ -94,9 +94,9 @@
     },
     {
       "name": "Scandinavian Defense",
-      "games": 74,
-      "score_pct": 48.6,
-      "average_cpl": 107.9
+      "games": 75,
+      "score_pct": 48.0,
+      "average_cpl": 108.5
     },
     {
       "name": "Modern Defense with 1 e4",
@@ -130,15 +130,21 @@
     },
     {
       "name": "Philidor Defense",
-      "games": 46,
-      "score_pct": 43.5,
+      "games": 47,
+      "score_pct": 42.6,
       "average_cpl": 95.6
     },
     {
       "name": "Queens Pawn Opening Chigorin Variation",
-      "games": 40,
-      "score_pct": 60.0,
-      "average_cpl": 103.3
+      "games": 42,
+      "score_pct": 61.9,
+      "average_cpl": 100.3
+    },
+    {
+      "name": "Van t Kruijs Opening 1...e5",
+      "games": 41,
+      "score_pct": 46.3,
+      "average_cpl": 117.2
     },
     {
       "name": "Scandinavian Defense 2.e5",
@@ -153,16 +159,16 @@
       "average_cpl": 94.3
     },
     {
-      "name": "Van t Kruijs Opening 1...e5",
-      "games": 36,
-      "score_pct": 44.4,
-      "average_cpl": 121.5
-    },
-    {
       "name": "Bishops Opening",
       "games": 35,
       "score_pct": 57.1,
       "average_cpl": 136.4
+    },
+    {
+      "name": "French Defense Normal Variation",
+      "games": 34,
+      "score_pct": 58.8,
+      "average_cpl": 99.2
     },
     {
       "name": "Scotch Game",
@@ -177,22 +183,22 @@
       "average_cpl": 116.8
     },
     {
-      "name": "French Defense Normal Variation",
-      "games": 32,
-      "score_pct": 56.2,
-      "average_cpl": 98.1
-    },
-    {
       "name": "Center Game",
-      "games": 29,
-      "score_pct": 44.8,
-      "average_cpl": 116.2
+      "games": 31,
+      "score_pct": 45.2,
+      "average_cpl": 115.7
     },
     {
       "name": "Ponziani Opening",
-      "games": 27,
-      "score_pct": 63.0,
-      "average_cpl": 86.3
+      "games": 28,
+      "score_pct": 60.7,
+      "average_cpl": 86.1
+    },
+    {
+      "name": "Nimzowitsch Defense",
+      "games": 28,
+      "score_pct": 42.9,
+      "average_cpl": 125.6
     },
     {
       "name": "Modern Defense with 1 e4 2.d4 Bg7 3.Nf3",
@@ -235,12 +241,6 @@
       "games": 25,
       "score_pct": 54.0,
       "average_cpl": 91.6
-    },
-    {
-      "name": "Nimzowitsch Defense",
-      "games": 25,
-      "score_pct": 44.0,
-      "average_cpl": 128.4
     },
     {
       "name": "Scotch Game 3...d6",
