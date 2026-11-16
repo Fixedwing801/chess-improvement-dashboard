@@ -5,7 +5,7 @@ Public, aggregate-only dashboard for the Chess Improvement Lab.
 ## Six separate dashboard pages
 
 - [Overview](https://fixedwing801.github.io/chess-improvement-dashboard/)
-- [Performance Analytics](https://fixedwing801.github.io/chess-improvement-dashboard/performance.html)
+- [Performance Analytics](https://fixedwing801.github.io/chess-improvement-dashboard/performance.html) — includes aggregate playing-time and session comparisons
 - [Opening Explorer](https://fixedwing801.github.io/chess-improvement-dashboard/openings.html)
 - [Mistake Analysis](https://fixedwing801.github.io/chess-improvement-dashboard/mistakes.html)
 - [Training Centre](https://fixedwing801.github.io/chess-improvement-dashboard/training.html)
@@ -19,7 +19,7 @@ This public repository contains aggregate statistics only. Individual games, PGN
 
 ## Methodology and limitations
 
-Centipawn loss is a short-search Stockfish estimate, not Chess.com accuracy. Phase and opening comparisons are descriptive, not causal diagnoses. Small opening samples are flagged as preliminary. Progress currently shows the latest baseline and import coverage; a dated aggregate history series is not yet published, so no rolling trend chart is claimed.
+Centipawn loss is a short-search Stockfish estimate, not Chess.com accuracy. Phase, opening and playing-condition comparisons are descriptive, not causal diagnoses. Playing-time aggregates use explicit PGN start times converted to Europe/London; individual timestamps and session dates are not published. Groups below 30 games are preliminary. Small opening samples are flagged as preliminary. Progress currently shows the latest baseline and import coverage; a dated aggregate history series is not yet published, so no rolling trend chart is claimed.
 
 ## GitHub Pages
 
