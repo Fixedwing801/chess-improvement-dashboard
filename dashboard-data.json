@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-11-16T00:41:27.841710+00:00",
+  "updated_at": "2026-11-16T02:08:21.312670+00:00",
   "games": {
     "discovered": 10977,
-    "analysed": 4803,
-    "waiting": 6174
+    "analysed": 4903,
+    "waiting": 6074
   },
   "results": {
-    "wins": 2321,
-    "draws": 167,
-    "losses": 2315,
-    "score_rate_pct": 50.1,
-    "win_rate_pct": 48.32
+    "wins": 2372,
+    "draws": 174,
+    "losses": 2357,
+    "score_rate_pct": 50.2,
+    "win_rate_pct": 48.38
   },
   "accuracy": {
-    "user_average_cpl": 102.4,
-    "opponent_average_cpl": 98.6
+    "user_average_cpl": 102.0,
+    "opponent_average_cpl": 98.3
   },
   "phases": [
     {
       "name": "Opening",
-      "average_cpl": 86.5,
-      "games_with_data": 4699
+      "average_cpl": 86.1,
+      "games_with_data": 4799
     },
     {
       "name": "Middlegame",
-      "average_cpl": 122.9,
-      "games_with_data": 4253
+      "average_cpl": 122.3,
+      "games_with_data": 4350
     },
     {
       "name": "Endgame",
-      "average_cpl": 56.8,
-      "games_with_data": 1057
+      "average_cpl": 57.3,
+      "games_with_data": 1092
     }
   ],
   "time_controls": [
     {
       "name": "Blitz",
-      "games": 2683,
-      "average_cpl": 102.2
+      "games": 2783,
+      "average_cpl": 101.4
     },
     {
       "name": "Bullet",
@@ -58,27 +58,27 @@
   "colours": [
     {
       "name": "White",
-      "games": 2400,
-      "average_cpl": 101.5
+      "games": 2452,
+      "average_cpl": 101.0
     },
     {
       "name": "Black",
-      "games": 2403,
-      "average_cpl": 103.4
+      "games": 2451,
+      "average_cpl": 103.0
     }
   ],
   "openings": [
     {
       "name": "Kings Pawn Opening Kings Knight Variation",
-      "games": 193,
-      "score_pct": 52.1,
-      "average_cpl": 110.8
+      "games": 210,
+      "score_pct": 52.4,
+      "average_cpl": 108.0
     },
     {
       "name": "Kings Pawn Opening 1...e5",
-      "games": 149,
-      "score_pct": 51.0,
-      "average_cpl": 127.1
+      "games": 156,
+      "score_pct": 51.9,
+      "average_cpl": 124.6
     },
     {
       "name": "Petrovs Defense Classical Variation",
@@ -118,39 +118,39 @@
     },
     {
       "name": "Van t Kruijs Opening 1...e5",
-      "games": 54,
-      "score_pct": 44.4,
-      "average_cpl": 112.8
-    },
-    {
-      "name": "Petrovs Defense Three Knights Game",
-      "games": 54,
-      "score_pct": 35.2,
-      "average_cpl": 105.8
+      "games": 58,
+      "score_pct": 46.6,
+      "average_cpl": 110.9
     },
     {
       "name": "Scandinavian Defense 2.e5",
-      "games": 51,
-      "score_pct": 55.9,
+      "games": 55,
+      "score_pct": 55.5,
       "average_cpl": 95.9
     },
     {
+      "name": "Petrovs Defense Three Knights Game",
+      "games": 55,
+      "score_pct": 34.5,
+      "average_cpl": 104.6
+    },
+    {
       "name": "Philidor Defense",
-      "games": 50,
-      "score_pct": 43.0,
-      "average_cpl": 94.1
+      "games": 54,
+      "score_pct": 41.7,
+      "average_cpl": 93.7
+    },
+    {
+      "name": "French Defense Normal Variation",
+      "games": 49,
+      "score_pct": 66.3,
+      "average_cpl": 93.5
     },
     {
       "name": "Modern Defense with 1 e4 2.Bc4 Bg7 3.Qf3",
       "games": 47,
       "score_pct": 55.3,
       "average_cpl": 126.9
-    },
-    {
-      "name": "French Defense Normal Variation",
-      "games": 46,
-      "score_pct": 66.3,
-      "average_cpl": 94.0
     },
     {
       "name": "Queens Pawn Opening Chigorin Variation",
@@ -172,9 +172,15 @@
     },
     {
       "name": "Bishops Opening",
+      "games": 37,
+      "score_pct": 59.5,
+      "average_cpl": 133.6
+    },
+    {
+      "name": "Bishops Opening Berlin Defense",
       "games": 36,
-      "score_pct": 58.3,
-      "average_cpl": 135.5
+      "score_pct": 61.1,
+      "average_cpl": 110.3
     },
     {
       "name": "Center Game",
@@ -183,22 +189,16 @@
       "average_cpl": 113.8
     },
     {
-      "name": "Bishops Opening Berlin Defense",
-      "games": 34,
-      "score_pct": 61.8,
-      "average_cpl": 114.2
-    },
-    {
       "name": "Ponziani Opening",
-      "games": 31,
-      "score_pct": 58.1,
-      "average_cpl": 85.9
+      "games": 33,
+      "score_pct": 60.6,
+      "average_cpl": 85.0
     },
     {
       "name": "Englund Gambit",
-      "games": 31,
-      "score_pct": 45.2,
-      "average_cpl": 106.9
+      "games": 32,
+      "score_pct": 46.9,
+      "average_cpl": 106.3
     },
     {
       "name": "Nimzowitsch Defense",
