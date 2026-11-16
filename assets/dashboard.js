@@ -111,6 +111,23 @@ function renderPerformance(d) {
   const c=panel("Performance by colour","Average CPL");
   c.append(bars(d.colours));
   root.append(c);
+
+  const pc=d.playing_conditions||{};
+  const pcNote=make("p","note","Times use Europe/London, including GMT/BST. Only aggregate time bands are published; individual game timestamps and session dates remain private. Groups below "+(pc.minimum_sample||30)+" games are preliminary.");
+  const pcTime=panel("Playing performance by time of day","UK local time");
+  pcTime.append(pcNote);
+  pcTime.append(table(["Period","Games","Score","Avg CPL","Sample"],(pc.time_of_day||[]).map(x=>[x.name,fmt(x.games),x.score_pct==null?"—":num(x.score_pct,1)+"%",num(x.average_cpl),x.reliable?"Larger sample":"Preliminary"])));
+  root.append(pcTime);
+  const pcBlitz=panel("Blitz performance by time of day","Primary time control");
+  pcBlitz.append(table(["Period","Games","Score","Avg CPL","Sample"],(pc.time_of_day_blitz||[]).map(x=>[x.name,fmt(x.games),x.score_pct==null?"—":num(x.score_pct,1)+"%",num(x.average_cpl),x.reliable?"Larger sample":"Preliminary"])));
+  root.append(pcBlitz);
+  const pcDays=panel("Performance by day of week","All time controls");
+  pcDays.append(table(["Day","Games","Score","Avg CPL","Sample"],(pc.day_of_week||[]).map(x=>[x.name,fmt(x.games),x.score_pct==null?"—":num(x.score_pct,1)+"%",num(x.average_cpl),x.reliable?"Larger sample":"Preliminary"])));
+  root.append(pcDays);
+  const pcSessions=panel("Performance by game number in a session","Sessions split by a gap over 60 minutes");
+  pcSessions.append(table(["Game number","Games","Score","Avg CPL","Sample"],(pc.session_game_number||[]).map(x=>[x.name,fmt(x.games),x.score_pct==null?"—":num(x.score_pct,1)+"%",num(x.average_cpl),x.reliable?"Larger sample":"Preliminary"])));
+  root.append(pcSessions);
+  root.append(note("These are descriptive aggregates, not proof that time of day causes a change in playing strength. Opponent rating, colour and time control can influence comparisons; use the private report for rating-difference context and detailed uncertainty."));
   const r=panel("Results","Analysed games");
   r.append(table(["Outcome","Games"],[["Wins",fmt(d.results.wins)],["Draws",fmt(d.results.draws)],["Losses",fmt(d.results.losses)],["Score rate",num(d.results.score_rate_pct,1)+"%"]]));
   root.append(r);
