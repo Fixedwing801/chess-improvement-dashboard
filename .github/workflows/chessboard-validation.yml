@@ -1,0 +1,26 @@
+name: Chessboard validation
+on:
+  pull_request:
+    paths:
+      - "assets/chessboard.js"
+      - "assets/chessboard.css"
+      - "training-exercise-01.html"
+      - "chessboard-demo.html"
+      - "scripts/check-inline-scripts.py"
+      - ".github/workflows/chessboard-validation.yml"
+  workflow_dispatch:
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Check reusable board JavaScript
+        run: node --check assets/chessboard.js
+      - name: Check inline exercise and demo scripts
+        run: python scripts/check-inline-scripts.py training-exercise-01.html chessboard-demo.html
