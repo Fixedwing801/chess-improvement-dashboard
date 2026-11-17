@@ -1,69 +1,111 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#171a1f">
 <title>Chess Improvement Lab · Training Exercise 01</title>
+<link rel="stylesheet" href="assets/chessboard.css">
 <style>
 :root{color-scheme:dark;--bg:#171a1f;--panel:#22262d;--line:#3a414b;--ink:#f0eee8;--muted:#b9b6ad;--gold:#d7bd8a}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#343941,transparent 55%),var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,sans-serif}
 main{max-width:900px;margin:auto;padding:22px 16px 40px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
 .eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:700}h1{font-size:clamp(24px,4vw,34px);margin:3px 0 0}.pill{border:1px solid #69745e;background:#303b2d;color:#dce8d1;padding:7px 13px;border-radius:999px;white-space:nowrap}
 .panel,.note{background:linear-gradient(145deg,#282d35,#20242b);border:1px solid var(--line);border-radius:18px;padding:clamp(12px,2.5vw,22px);box-shadow:0 14px 40px #0005}
-.instruction{color:#e4dfd2;margin:0 0 16px}.board-wrap{max-width:680px;margin:auto}.boardline{display:grid;grid-template-columns:20px 1fr;gap:7px}.ranks{display:grid;grid-template-rows:repeat(8,1fr);align-items:center;text-align:center;color:#d4cbb9;font-size:13px}
-.board{aspect-ratio:1;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);border:1px solid #aa987a;box-shadow:0 8px 22px #0007;overflow:hidden;touch-action:manipulation}
-.square{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;min-height:0;cursor:pointer}
-.light{background:repeating-linear-gradient(2deg,#ffffff08 0 2px,#55391b12 3px 5px),linear-gradient(135deg,#d6c39e,#b79b70)}
-.dark{background:repeating-linear-gradient(-2deg,#ffffff08 0 2px,#27160818 3px 5px),linear-gradient(135deg,#a27c54,#785334)}
-.square.selected{box-shadow:inset 0 0 0 4px #e9d36d}.square.last{background-blend-mode:normal,multiply}.square.target:after{content:"";position:absolute;width:23%;height:23%;border-radius:50%;background:#243b2a99;z-index:2;pointer-events:none}.square.target.capture:after{width:78%;height:78%;background:transparent;border:5px solid #243b2a9c}
-.piece{width:91%;height:91%;object-fit:contain;position:relative;z-index:1;pointer-events:none;filter:drop-shadow(0 2px 1px #0004)}
-.files{display:grid;grid-template-columns:20px repeat(8,1fr);gap:7px;margin-top:4px;color:#d4cbb9;font-size:13px;text-align:center}
+.instruction{color:#e4dfd2;margin:0 0 16px}.board-wrap{max-width:680px;margin:auto}
 .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 8px}.btn{border:1px solid #59616c;background:#303640;color:#f2efe7;border-radius:9px;padding:10px 16px;font:inherit;cursor:pointer}.btn.primary{background:#d6c09a;color:#25221d;border-color:#d6c09a;font-weight:700}.btn:disabled{opacity:.4}
 .status{border-top:1px solid var(--line);margin-top:15px;padding-top:13px;color:var(--muted)}.status strong{color:var(--ink)}.feedback{margin-top:8px;min-height:24px;color:#e4d3a9}
 .below{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.note{background:#1b1f25;padding:16px}.note h2{font-size:17px;margin:0 0 6px}.note p{margin:0;color:var(--muted)}.foot{text-align:center;color:#999fa8;font-size:12px;margin-top:16px}
-@media(max-width:600px){main{padding:14px 10px 28px}.top{align-items:flex-start}.pill{font-size:12px}.panel{padding:10px}.boardline{grid-template-columns:16px 1fr;gap:4px}.files{grid-template-columns:16px repeat(8,1fr);gap:4px}.below{grid-template-columns:1fr}.square.selected{box-shadow:inset 0 0 0 3px #e9d36d}}
-</style></head>
-<body><main>
-<header class="top"><div><div class="eyebrow">Chess Improvement Lab · Training exercise 01</div><h1>Interactive chessboard</h1></div><div class="pill" id="turn">White to move</div></header>
+@media(max-width:600px){main{padding:14px 10px 28px}.top{align-items:flex-start}.pill{font-size:12px}.panel{padding:10px}.below{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<header class="top">
+  <div><div class="eyebrow">Chess Improvement Lab · Training exercise 01</div><h1>Interactive chessboard</h1></div>
+  <div class="pill" id="turn">White to move</div>
+</header>
 <section class="panel">
-<p class="instruction"><strong>Task:</strong> Black has just played …f6. What immediate threat does this create, and how should White respond?</p>
-<div class="board-wrap"><div class="boardline"><div class="ranks" id="ranks"></div><div class="board" id="board" role="group" aria-label="Interactive chessboard"></div></div><div class="files"><span></span><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span></div></div>
-<div class="controls"><button class="btn" id="undo">Back</button><button class="btn primary" id="hint">Show next move</button><button class="btn" id="reset">Restart</button></div>
-<div class="status"><strong id="statusTitle">Find a safe retreat for the bishop on g5.</strong><div class="feedback" id="feedback">Select a white piece, then choose a highlighted destination.</div></div>
+  <p class="instruction"><strong>Task:</strong> Black has just played …f6. What immediate threat does this create, and how should White respond?</p>
+  <div class="board-wrap"><div id="board"></div></div>
+  <div class="controls">
+    <button class="btn" id="undo">Back</button>
+    <button class="btn primary" id="hint">Show next move</button>
+    <button class="btn" id="reset">Restart</button>
+  </div>
+  <div class="status"><strong id="statusTitle">Find a safe retreat for the bishop on g5.</strong><div class="feedback" id="feedback">Select a white piece, then choose a highlighted destination.</div></div>
 </section>
-<div class="below"><section class="note"><h2>What to look for</h2><p>The pawn on f6 attacks the bishop on g5. Move the bishop before pursuing another idea.</p></section><section class="note"><h2>Key lesson</h2><p>Identify your opponent’s immediate threat before choosing your next move. Be3 is safe; Bf4 is not, because the bishop on d6 controls f4.</p></section></div>
-<div class="foot">White is at the bottom. Piece artwork is loaded from the Chess.com Classic theme CDN.</div>
+<div class="below">
+  <section class="note"><h2>What to look for</h2><p>The pawn on f6 attacks the bishop on g5. Move the bishop before pursuing another idea.</p></section>
+  <section class="note"><h2>Key lesson</h2><p>Identify your opponent’s immediate threat before choosing your next move. Be3 is safe; Bf4 is not, because the bishop on d6 controls f4.</p></section>
+</div>
+<div class="foot">White is at the bottom. This exercise now uses the shared Chess Improvement Lab board component.</div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+<script src="assets/chessboard.js"></script>
 <script>
 (function(){
-const FEN="r1bqk1nr/1ppp2pp/2nbpp2/p5B1/1bBPP3/2N2N2/PPP2PPP/RNBQK2R w KQkq - 0 7";
-const PIECES={wk:"wk",wq:"wq",wr:"wr",wb:"wb",wn:"wn",wp:"wp",bk:"bk",bq:"bq",br:"br",bb:"bb",bn:"bn",bp:"bp"};
-const board=document.getElementById("board"),ranks=document.getElementById("ranks"),turn=document.getElementById("turn"),feedback=document.getElementById("feedback"),title=document.getElementById("statusTitle");
-let game,selected=null,targets=[],last=null;
-function init(){game=new Chess(FEN);selected=null;targets=[];last=null;title.textContent="Find a safe retreat for the bishop on g5.";feedback.textContent="Select a white piece, then choose a highlighted destination.";render()}
-function render(){
- board.innerHTML="";ranks.innerHTML="";
- for(let r=8;r>=1;r--){const n=document.createElement("span");n.textContent=r;ranks.appendChild(n)}
- for(let r=8;r>=1;r--)for(let f=0;f<8;f++){
-  const sq="abcdefgh"[f]+r,p=game.get(sq),el=document.createElement("div");
-  el.className="square "+(((r+f)%2===0)?"light":"dark");el.dataset.square=sq;
-  if(selected===sq)el.classList.add("selected");if(targets.includes(sq)){el.classList.add("target");if(p)el.classList.add("capture")}
-  if(last&&(last.from===sq||last.to===sq))el.classList.add("last");
-  if(p){const img=document.createElement("img");img.className="piece";img.alt=(p.color==="w"?"White ":"Black ")+({k:"king",q:"queen",r:"rook",b:"bishop",n:"knight",p:"pawn"}[p.type]);img.src="https://images.chesscomfiles.com/chess-themes/pieces/classic/150/"+p.color+p.type+".png";el.appendChild(img)}
-  el.addEventListener("click",()=>clickSquare(sq));board.appendChild(el)
- }
- turn.textContent=game.turn()==="w"?"White to move":"Black to move";document.getElementById("undo").disabled=game.history().length===0;
-}
-function clickSquare(sq){
- if(selected){const m=game.move({from:selected,to:sq,promotion:"q"});if(m){last={from:m.from,to:m.to};selected=null;targets=[];render();
-  if(m.from==="g5"&&m.to==="e3"){feedback.textContent="Correct: Be3 safely removes the bishop from the pawn attack.";title.textContent="Correct move: Be3."}
-  else if(m.from==="g5"&&m.to==="f4"){feedback.textContent="That retreat is unsafe: Black’s bishop on d6 controls f4."}
-  else feedback.textContent="Move played. Check whether it answers the immediate threat.";return}}
- const p=game.get(sq);if(p&&p.color===game.turn()){selected=sq;targets=game.moves({square:sq,verbose:true}).map(x=>x.to);feedback.textContent=targets.length?"Choose a highlighted legal destination.":"No legal moves from that square."}else{selected=null;targets=[]}render()
-}
-document.getElementById("hint").addEventListener("click",()=>{const m=game.moves({square:"g5",verbose:true}).find(x=>x.to==="e3");if(m){selected="g5";targets=["e3"];render();feedback.textContent="Hint: move the bishop from g5 to e3 (Be3)."}});
-document.getElementById("undo").addEventListener("click",()=>{const m=game.undo();if(m){last=null;selected=null;targets=[];title.textContent="Find a safe retreat for the bishop on g5.";feedback.textContent="Last move undone.";render()}});
-document.getElementById("reset").addEventListener("click",init);
-if(typeof Chess==="undefined"){feedback.textContent="The chess rules library did not load. Check your connection and reload this page."}else init();
+  const FEN = "r1bqk1nr/1ppp2pp/2nbpp2/p5B1/1bBPP3/2N2N2/PPP2PPP/RNBQK2R w KQkq - 0 7";
+  const turn = document.getElementById("turn");
+  const feedback = document.getElementById("feedback");
+  const title = document.getElementById("statusTitle");
+  let game = new Chess(FEN);
+  let board;
+
+  function reset() {
+    game = new Chess(FEN);
+    title.textContent = "Find a safe retreat for the bishop on g5.";
+    feedback.textContent = "Select a white piece, then choose a highlighted destination.";
+    board.setLastMove(null);
+    board.clearHint();
+    board.render();
+  }
+
+  board = ChessBoard.mount(document.getElementById("board"), {
+    getGame: () => game,
+    orientation: "white",
+    onMove: move => {
+      if (move.from === "g5" && move.to === "e3") {
+        feedback.textContent = "Correct: Be3 safely removes the bishop from the pawn attack.";
+        title.textContent = "Correct move: Be3.";
+      } else if (move.from === "g5" && move.to === "f4") {
+        feedback.textContent = "That retreat is unsafe: Black’s bishop on d6 controls f4.";
+      } else {
+        feedback.textContent = "Move played. Check whether it answers the immediate threat.";
+      }
+    },
+    onRender: current => {
+      turn.textContent = current.turn() === "w" ? "White to move" : "Black to move";
+      document.getElementById("undo").disabled = current.history().length === 0;
+    }
+  });
+
+  document.getElementById("hint").addEventListener("click", () => {
+    const safeMove = game.moves({ square: "g5", verbose: true }).find(move => move.to === "e3");
+    if (safeMove) {
+      board.setHint("g5", "e3");
+      feedback.textContent = "Hint: move the bishop from g5 to e3 (Be3).";
+    } else {
+      feedback.textContent = "The bishop is no longer on g5. Restart to see the original position.";
+    }
+  });
+
+  document.getElementById("undo").addEventListener("click", () => {
+    if (game.undo()) {
+      const history = game.history({ verbose: true });
+      board.setLastMove(history.length ? history[history.length - 1] : null);
+      board.clearHint();
+      title.textContent = "Find a safe retreat for the bishop on g5.";
+      feedback.textContent = "Last move undone.";
+      board.render();
+    }
+  });
+
+  document.getElementById("reset").addEventListener("click", reset);
+  if (typeof Chess === "undefined") {
+    feedback.textContent = "The chess rules library did not load. Check your connection and reload this page.";
+  }
 })();
-</script></body></html>
+</script>
+</body>
+</html>
