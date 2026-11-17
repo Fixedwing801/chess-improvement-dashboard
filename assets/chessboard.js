@@ -113,7 +113,8 @@
         }
       }
       const piece = game.get(square);
-      if (piece && piece.color === game.turn()) {
+      if (piece && piece.color === game.turn() &&
+          (typeof options.canSelectPiece !== "function" || options.canSelectPiece(piece, square, game))) {
         selected = square;
         targets = game.moves({ square, verbose: true }).map(move => move.to);
       } else {
