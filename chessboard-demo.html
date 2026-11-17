@@ -53,10 +53,21 @@ button.control{border:1px solid #59616c;background:#303640;color:#f2efe7;border-
   });
   function update() { board.render(); }
   document.getElementById("back").addEventListener("click", () => {
-    if (cursor > 0) { game.undo(); cursor--; update(); }
+    if (cursor > 0) {
+      game.undo();
+      cursor--;
+      const moves = game.history({ verbose: true });
+      board.setLastMove(moves.length ? moves[moves.length - 1] : null);
+      update();
+    }
   });
   document.getElementById("forward").addEventListener("click", () => {
-    if (cursor < history.length) { game.move(history[cursor]); cursor++; update(); }
+    if (cursor < history.length) {
+      const move = game.move(history[cursor]);
+      cursor++;
+      board.setLastMove(move);
+      update();
+    }
   });
   document.getElementById("flip").addEventListener("click", () => board.flip());
   document.getElementById("reset").addEventListener("click", () => {
