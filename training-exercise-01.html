@@ -68,6 +68,7 @@ main{max-width:900px;margin:auto;padding:22px 16px 40px}.top{display:flex;justif
   board = ChessBoard.mount(document.getElementById("board"), {
     getGame: () => game,
     orientation: "white",
+    canSelectPiece: piece => piece.color === "w",
     onMove: move => {
       if (move.from === "g5" && move.to === "e3") {
         feedback.textContent = "Correct: Be3 safely removes the bishop from the pawn attack.";
