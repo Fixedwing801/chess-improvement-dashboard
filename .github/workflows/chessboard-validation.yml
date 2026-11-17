@@ -8,6 +8,7 @@ on:
       - "chessboard-demo.html"
       - "scripts/check-inline-scripts.py"
       - "scripts/test-chessboard.js"
+      - "scripts/test-chessboard-browser.cjs"
       - ".github/workflows/chessboard-validation.yml"
   workflow_dispatch:
 jobs:
@@ -27,3 +28,16 @@ jobs:
         run: node scripts/test-chessboard.js
       - name: Check inline exercise and demo scripts
         run: python scripts/check-inline-scripts.py training-exercise-01.html chessboard-demo.html
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install browser test dependency
+        run: npm install --no-save playwright@1.56.1
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run real-browser chessboard tests
+        run: node scripts/test-chessboard-browser.cjs
