@@ -5,6 +5,14 @@
   "use strict";
   const FILES = "abcdefgh";
   const PIECES = { k:"king", q:"queen", r:"rook", b:"bishop", n:"knight", p:"pawn" };
+  const PIECE_ART = {
+    k: '<path d="M50 8v19 M39 17h22 M35 33h30l-4 12 12 33H27l12-33z M22 78h56l7 10H15z"/>',
+    q: '<path d="M22 30l13 16 15-25 15 25 13-16-5 39H27z M25 69h50l7 10H18z M17 18a5 5 0 1 0 10 0 5 5 0 1 0-10 0 M45 13a5 5 0 1 0 10 0 5 5 0 1 0-10 0 M73 18a5 5 0 1 0 10 0 5 5 0 1 0-10 0"/>',
+    r: '<path d="M24 15h13v13h8V15h10v13h8V15h13v28H24z M31 43h38l-5 30H36z M25 73h50l8 12H17z"/>',
+    b: '<path d="M50 12c-12 0-19 10-17 21 1 7 7 12 13 16L34 72h32L54 49c6-4 12-9 13-16 2-11-5-21-17-21z M25 72h50l8 13H17z"/>',
+    n: '<path d="M24 78c5-10 7-20 5-30-2-12 4-23 17-31l5-7 4 11 14 9-7 9 8 10-9 6-3 23z M23 78h52l8 10H15z M46 28l10 2"/>',
+    p: '<path d="M50 13c-10 0-17 8-17 18 0 8 5 14 12 17L34 72h32L55 48c7-3 12-9 12-17 0-10-7-18-17-18z M25 72h50l8 13H17z"/>'
+  };
 
   function mount(root, options = {}) {
     if (!root) throw new Error("ChessBoard.mount requires a root element.");
@@ -15,7 +23,6 @@
     let targets = [];
     let lastMove = null;
     let hint = null;
-    const pieceBase = options.pieceBase || "https://images.chesscomfiles.com/chess-themes/pieces/classic/150/";
 
     const shell = document.createElement("div");
     shell.className = "cl-board-shell";
@@ -73,12 +80,12 @@
         if (hint && (hint.from === square || hint.to === square)) cell.classList.add("cl-hint");
 
         if (piece) {
-          const image = document.createElement("img");
-          image.className = "cl-piece";
-          image.alt = "";
-          image.draggable = false;
-          image.src = pieceBase + piece.color + piece.type + ".png";
-          image.onerror = () => { image.replaceWith(document.createTextNode(piece.type.toUpperCase())); };
+          const image = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          image.setAttribute("viewBox", "0 0 100 100");
+          image.setAttribute("class", "cl-piece " + (piece.color === "w" ? "cl-piece-white" : "cl-piece-black"));
+          image.setAttribute("aria-hidden", "true");
+          image.setAttribute("focusable", "false");
+          image.innerHTML = PIECE_ART[piece.type];
           cell.append(image);
         }
         cell.addEventListener("click", () => handleSquare(square));
