@@ -49,6 +49,10 @@ main{max-width:900px;margin:auto;padding:22px 16px 40px}.top{display:flex;justif
   const turn = document.getElementById("turn");
   const feedback = document.getElementById("feedback");
   const title = document.getElementById("statusTitle");
+  if (typeof Chess === "undefined" || typeof ChessBoard === "undefined") {
+    feedback.textContent = "The chessboard libraries did not load. Check your connection and reload this page.";
+    return;
+  }
   let game = new Chess(FEN);
   let board;
 
@@ -102,9 +106,6 @@ main{max-width:900px;margin:auto;padding:22px 16px 40px}.top{display:flex;justif
   });
 
   document.getElementById("reset").addEventListener("click", reset);
-  if (typeof Chess === "undefined") {
-    feedback.textContent = "The chess rules library did not load. Check your connection and reload this page.";
-  }
 })();
 </script>
 </body>
