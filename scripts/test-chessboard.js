@@ -12,11 +12,11 @@ class FakeElement {
     this._className = "";
     this.classList = {
       add: (...names) => {
-        const current = new Set(this._className.split(/\\s+/).filter(Boolean));
+        const current = new Set(this._className.split(/\s+/).filter(Boolean));
         names.forEach(name => current.add(name));
         this._className = [...current].join(" ");
       },
-      contains: name => this._className.split(/\\s+/).includes(name)
+      contains: name => this._className.split(/\s+/).includes(name)
     };
   }
   set className(value) { this._className = value; }
