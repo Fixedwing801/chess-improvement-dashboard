@@ -6,7 +6,7 @@
   --cl-dark-b: #785334;
   display: grid;
   grid-template-columns: 20px minmax(0, 1fr);
-  grid-template-rows: minmax(0, 1fr) 20px;
+  grid-template-rows: auto 20px;
   gap: 4px 7px;
   width: 100%;
   max-width: 680px;
