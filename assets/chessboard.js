@@ -39,6 +39,7 @@
       const order = squareOrder();
       rankLabels.replaceChildren(); files.replaceChildren(); board.replaceChildren();
       order.ranks.forEach(rank => { const el=document.createElement("span"); el.textContent=String(rank); rankLabels.append(el); });
+      files.append(document.createElement("span"));
       order.filesInOrder.forEach(file => { const el=document.createElement("span"); el.textContent=file; files.append(el); });
       order.ranks.forEach(rank => order.filesInOrder.forEach(file => {
         const square=file+rank, piece=game.get(square), cell=document.createElement("button");
