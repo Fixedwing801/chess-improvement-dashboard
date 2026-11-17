@@ -22,5 +22,7 @@ jobs:
           python-version: "3.x"
       - name: Check reusable board JavaScript
         run: node --check assets/chessboard.js
+      - name: Run chessboard component tests
+        run: node scripts/test-chessboard.js
       - name: Check inline exercise and demo scripts
         run: python scripts/check-inline-scripts.py training-exercise-01.html chessboard-demo.html
