@@ -7,6 +7,7 @@ on:
       - "training-exercise-01.html"
       - "chessboard-demo.html"
       - "scripts/check-inline-scripts.py"
+      - "scripts/test-chessboard.js"
       - ".github/workflows/chessboard-validation.yml"
   workflow_dispatch:
 jobs:
