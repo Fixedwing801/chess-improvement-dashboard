@@ -34,6 +34,10 @@ button.control{border:1px solid #59616c;background:#303640;color:#f2efe7;border-
 <script src="assets/chessboard.js"></script>
 <script>
 (() => {
+  if (typeof Chess === "undefined" || typeof ChessBoard === "undefined") {
+    document.getElementById("status").textContent = "The chessboard libraries did not load. Check your connection and reload this page.";
+    return;
+  }
   const startFen = new Chess().fen();
   let game = new Chess();
   let history = [];
