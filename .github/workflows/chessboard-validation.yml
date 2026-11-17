@@ -29,7 +29,7 @@ jobs:
       - name: Check inline exercise and demo scripts
         run: python scripts/check-inline-scripts.py training-exercise-01.html chessboard-demo.html
   browser:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
