@@ -76,6 +76,7 @@ assert.equal(grid.children[0].dataset.square, "a8", "white orientation starts at
 assert(grid.children.find(square => square.dataset.square === "e2").children[0], "renders a local SVG piece");
 
 grid.children.find(square => square.dataset.square === "e2").click();
+console.log("e4 target debug:", grid.children.find(square => square.dataset.square === "e4").className);
 assert(grid.children.find(square => square.dataset.square === "e4").classList.contains("cl-target"), "shows legal target");
 grid.children.find(square => square.dataset.square === "e4").click();
 assert.deepEqual(moved && [moved.from, moved.to], ["e2", "e4"], "sends legal move to host callback");
