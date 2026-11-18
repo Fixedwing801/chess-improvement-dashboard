@@ -32,29 +32,15 @@ const server = http.createServer((req, res) => {
 
     await page.goto("http://127.0.0.1:4173/chessboard-demo.html");
     await page.waitForSelector(".cl-square");
-    await page.waitForFunction(() => [...document.querySelectorAll(".cl-piece-white")].every(img => img.complete && img.dataset.bgProcessed === "true"));
-    const whitePieceBrightness = await page.locator(".cl-piece-white").evaluateAll(images => {
-      const result = {};
-      for (const img of images) {
-        const name = new URL(img.src).pathname.split("/").pop();
-        if (result[name] !== undefined) continue;
-        const canvas = document.createElement("canvas");
-        canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-        let total = 0, count = 0;
-        for (let i = 0; i < pixels.length; i += 4) {
-          if (pixels[i + 3] > 200) { total += pixels[i]; count++; }
-        }
-        result[name] = count ? total / count : 0;
-      }
-      return result;
-    });
-    assert.equal(Object.keys(whitePieceBrightness).length, 6, "all six white piece types are present");
-    for (const [piece, brightness] of Object.entries(whitePieceBrightness)) {
-      assert.ok(brightness > 175, `${piece} fill must be visibly light (mean luminance ${brightness.toFixed(1)})`);
-    }
+    await page.waitForFunction(() => document.querySelectorAll(".cl-piece-white").length === 16 && document.querySelectorAll(".cl-piece-black").length === 16);
+    const whitePieceStyles = await page.locator(".cl-piece-white").evaluateAll(pieces =>
+      pieces.map(piece => getComputedStyle(piece).color)
+    );
+    const blackPieceStyles = await page.locator(".cl-piece-black").evaluateAll(pieces =>
+      pieces.map(piece => getComputedStyle(piece).color)
+    );
+    assert.ok(whitePieceStyles.every(color => color === "rgb(247, 246, 242)"), "all white pieces use the warm-white fill");
+    assert.ok(blackPieceStyles.every(color => color === "rgb(85, 86, 90)"), "all black pieces use the charcoal fill");
     await page.screenshot({ path: path.join(screenshots, "demo-desktop.png"), fullPage: true });
     assert.equal(await page.locator(".cl-square").count(), 64, "demo renders 64 squares");
     assert.match(await page.locator("#status").innerText(), /White to move/);
@@ -76,7 +62,7 @@ const server = http.createServer((req, res) => {
     // interaction cannot leave the screenshot in Black orientation.
     await page.reload();
     await page.waitForSelector(".cl-square");
-    await page.waitForFunction(() => [...document.querySelectorAll(".cl-piece-white")].every(img => img.complete && img.dataset.bgProcessed === "true"));
+    await page.waitForFunction(() => document.querySelectorAll(".cl-piece-white").length === 16 && document.querySelectorAll(".cl-piece-black").length === 16);
     await page.setViewportSize({ width: 390, height: 844 });
     const mobile = await page.locator(".cl-board").boundingBox();
     assert.ok(mobile && mobile.width <= 370 && mobile.width > 300, "board fits mobile viewport");
@@ -85,7 +71,7 @@ const server = http.createServer((req, res) => {
 
     await page.goto("http://127.0.0.1:4173/training-exercise-01.html");
     await page.waitForSelector(".cl-square");
-    await page.waitForFunction(() => [...document.querySelectorAll(".cl-piece-white")].every(img => img.complete && img.dataset.bgProcessed === "true"));
+    await page.waitForFunction(() => document.querySelectorAll(".cl-piece-white").length === 16 && document.querySelectorAll(".cl-piece-black").length === 16);
     await page.screenshot({ path: path.join(screenshots, "exercise-desktop.png"), fullPage: true });
     assert.equal(await page.locator(".cl-square").count(), 64, "exercise renders 64 squares");
     await page.locator('[data-square="b4"]').click();
