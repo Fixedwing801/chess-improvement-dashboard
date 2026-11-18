@@ -5,6 +5,8 @@ const path = require("node:path");
 const { chromium } = require("playwright");
 
 const root = path.resolve(__dirname, "..");
+const screenshots = path.join(root, "test-screenshots");
+fs.mkdirSync(screenshots, { recursive: true });
 const mime = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css" };
 const server = http.createServer((req, res) => {
   const pathname = decodeURIComponent(new URL(req.url, "http://localhost").pathname);
@@ -30,6 +32,7 @@ const server = http.createServer((req, res) => {
 
     await page.goto("http://127.0.0.1:4173/chessboard-demo.html");
     await page.waitForSelector(".cl-square");
+    await page.screenshot({ path: path.join(screenshots, "demo-desktop.png"), fullPage: true });
     assert.equal(await page.locator(".cl-square").count(), 64, "demo renders 64 squares");
     assert.match(await page.locator("#status").innerText(), /White to move/);
 
@@ -50,9 +53,11 @@ const server = http.createServer((req, res) => {
     const mobile = await page.locator(".cl-board").boundingBox();
     assert.ok(mobile && mobile.width <= 370 && mobile.width > 300, "board fits mobile viewport");
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), "mobile page has no horizontal overflow");
+    await page.screenshot({ path: path.join(screenshots, "demo-mobile.png"), fullPage: true });
 
     await page.goto("http://127.0.0.1:4173/training-exercise-01.html");
     await page.waitForSelector(".cl-square");
+    await page.screenshot({ path: path.join(screenshots, "exercise-desktop.png"), fullPage: true });
     assert.equal(await page.locator(".cl-square").count(), 64, "exercise renders 64 squares");
     await page.locator('[data-square="b4"]').click();
     assert.ok(!(await page.locator('[data-square="b4"]').evaluate(el => el.classList.contains("cl-selected"))), "black pieces cannot be selected");
