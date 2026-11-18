@@ -39,7 +39,7 @@
       // Preserve all connected artwork: the source pieces include legitimate
       // detached details. Remove tiny isolated alpha fragments only, then
       // neutralise gold/brown chroma while preserving luminance and alpha.
-      const labels=new Int32Array(w*h), stack=[];
+      const labels=new Int32Array(w*h);
       let id=0;
       const componentSizes=[];
       for(let start=0;start<w*h;start++){
