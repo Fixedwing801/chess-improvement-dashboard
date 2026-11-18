@@ -112,19 +112,13 @@
         if(lastMove&&(lastMove.from===square||lastMove.to===square))cell.classList.add("cl-last");
         if(hint&&(hint.from===square||hint.to===square))cell.classList.add("cl-hint");
         if(piece){
-          const img=document.createElement("img");
-          const color=piece.color==="w"?"white":"black";
-          img.className="cl-piece "+(piece.color==="w"?"cl-piece-white":"cl-piece-black");
-          img.alt="";img.setAttribute("aria-hidden","true");img.draggable=false;
-          if(color==="white") img.addEventListener("load",()=>removeEdgeBlackBackground(img),{once:true});
-          img.src="assets/pieces/"+color+"_"+PIECES[piece.type]+".png";
-          img.onerror=()=>{
-            const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");
-            svg.setAttribute("viewBox","0 0 100 100");svg.setAttribute("class",img.className);
-            svg.setAttribute("aria-hidden","true");svg.setAttribute("focusable","false");
-            svg.innerHTML=PIECE_ART[piece.type];img.replaceWith(svg);
-          };
-          cell.append(img);
+          const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");
+          svg.setAttribute("viewBox","0 0 100 100");
+          svg.setAttribute("class","cl-piece "+(piece.color==="w"?"cl-piece-white":"cl-piece-black"));
+          svg.setAttribute("aria-hidden","true");
+          svg.setAttribute("focusable","false");
+          svg.innerHTML=PIECE_ART[piece.type];
+          cell.append(svg);
         }
         cell.addEventListener("click",()=>handleSquare(square));board.append(cell);
       }));
