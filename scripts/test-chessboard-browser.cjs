@@ -33,19 +33,28 @@ const server = http.createServer((req, res) => {
     await page.goto("http://127.0.0.1:4173/chessboard-demo.html");
     await page.waitForSelector(".cl-square");
     await page.waitForFunction(() => [...document.querySelectorAll(".cl-piece-white")].every(img => img.complete && img.dataset.bgProcessed === "true"));
-    const whitePieceBrightness = await page.locator(".cl-piece-white").first().evaluate(img => {
-      const canvas = document.createElement("canvas");
-      canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0);
-      const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-      let total = 0, count = 0;
-      for (let i = 0; i < pixels.length; i += 4) {
-        if (pixels[i + 3] > 200) { total += pixels[i]; count++; }
+    const whitePieceBrightness = await page.locator(".cl-piece-white").evaluateAll(images => {
+      const result = {};
+      for (const img of images) {
+        const name = new URL(img.src).pathname.split("/").pop();
+        if (result[name] !== undefined) continue;
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        let total = 0, count = 0;
+        for (let i = 0; i < pixels.length; i += 4) {
+          if (pixels[i + 3] > 200) { total += pixels[i]; count++; }
+        }
+        result[name] = count ? total / count : 0;
       }
-      return count ? total / count : 0;
+      return result;
     });
-    assert.ok(whitePieceBrightness > 175, `white piece fill must be visibly light (mean luminance ${whitePieceBrightness.toFixed(1)})`);
+    assert.equal(Object.keys(whitePieceBrightness).length, 6, "all six white piece types are present");
+    for (const [piece, brightness] of Object.entries(whitePieceBrightness)) {
+      assert.ok(brightness > 175, `${piece} fill must be visibly light (mean luminance ${brightness.toFixed(1)})`);
+    }
     await page.screenshot({ path: path.join(screenshots, "demo-desktop.png"), fullPage: true });
     assert.equal(await page.locator(".cl-square").count(), 64, "demo renders 64 squares");
     assert.match(await page.locator("#status").innerText(), /White to move/);
