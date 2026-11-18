@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-11-18T19:34:59.928561+00:00",
+  "updated_at": "2026-11-18T23:21:44.458589+00:00",
   "games": {
     "discovered": 11018,
-    "analysed": 6403,
-    "waiting": 4615
+    "analysed": 6503,
+    "waiting": 4515
   },
   "results": {
-    "wins": 3101,
-    "draws": 237,
-    "losses": 3065,
-    "score_rate_pct": 50.3,
-    "win_rate_pct": 48.43
+    "wins": 3143,
+    "draws": 240,
+    "losses": 3120,
+    "score_rate_pct": 50.2,
+    "win_rate_pct": 48.33
   },
   "accuracy": {
-    "user_average_cpl": 98.4,
-    "opponent_average_cpl": 95.1
+    "user_average_cpl": 98.2,
+    "opponent_average_cpl": 94.8
   },
   "phases": [
     {
       "name": "Opening",
-      "average_cpl": 81.7,
-      "games_with_data": 6299
+      "average_cpl": 81.4,
+      "games_with_data": 6399
     },
     {
       "name": "Middlegame",
-      "average_cpl": 118.0,
-      "games_with_data": 5760
+      "average_cpl": 117.8,
+      "games_with_data": 5853
     },
     {
       "name": "Endgame",
-      "average_cpl": 56.3,
-      "games_with_data": 1537
+      "average_cpl": 57.1,
+      "games_with_data": 1569
     }
   ],
   "time_controls": [
     {
       "name": "Blitz",
-      "games": 4226,
-      "average_cpl": 96.3
+      "games": 4320,
+      "average_cpl": 96.1
     },
     {
       "name": "Bullet",
@@ -46,153 +46,153 @@
     },
     {
       "name": "Daily",
-      "games": 23,
-      "average_cpl": 78.1
+      "games": 24,
+      "average_cpl": 80.9
     },
     {
       "name": "Rapid",
-      "games": 1281,
-      "average_cpl": 99.5
+      "games": 1286,
+      "average_cpl": 99.6
     }
   ],
   "colours": [
     {
       "name": "White",
-      "games": 3208,
-      "average_cpl": 97.2
+      "games": 3258,
+      "average_cpl": 97.0
     },
     {
       "name": "Black",
-      "games": 3195,
-      "average_cpl": 99.5
+      "games": 3245,
+      "average_cpl": 99.4
     }
   ],
   "playing_conditions": {
     "timezone": "Europe/London",
     "minimum_sample": 30,
-    "timestamped_games": 6403,
+    "timestamped_games": 6503,
     "untimed_games": 0,
     "time_of_day": [
       {
         "name": "Early morning",
-        "games": 272,
-        "score_pct": 49.1,
-        "average_cpl": 106.3,
-        "average_blunders": 2.66,
+        "games": 277,
+        "score_pct": 48.9,
+        "average_cpl": 105.6,
+        "average_blunders": 2.63,
         "reliable": true
       },
       {
         "name": "Morning",
-        "games": 879,
-        "score_pct": 50.6,
-        "average_cpl": 96.6,
-        "average_blunders": 2.44,
+        "games": 912,
+        "score_pct": 50.3,
+        "average_cpl": 96.3,
+        "average_blunders": 2.45,
         "reliable": true
       },
       {
         "name": "Lunchtime",
-        "games": 567,
-        "score_pct": 53.1,
-        "average_cpl": 100.4,
+        "games": 572,
+        "score_pct": 53.3,
+        "average_cpl": 100.3,
         "average_blunders": 2.56,
         "reliable": true
       },
       {
         "name": "Afternoon",
-        "games": 1274,
-        "score_pct": 50.4,
+        "games": 1279,
+        "score_pct": 50.3,
         "average_cpl": 97.8,
-        "average_blunders": 2.52,
+        "average_blunders": 2.53,
         "reliable": true
       },
       {
         "name": "Evening",
-        "games": 1248,
-        "score_pct": 50.8,
+        "games": 1262,
+        "score_pct": 50.6,
         "average_cpl": 97.4,
-        "average_blunders": 2.55,
+        "average_blunders": 2.56,
         "reliable": true
       },
       {
         "name": "Late night",
-        "games": 2163,
-        "score_pct": 49.2,
-        "average_cpl": 98.5,
-        "average_blunders": 2.53,
+        "games": 2201,
+        "score_pct": 49.1,
+        "average_cpl": 98.2,
+        "average_blunders": 2.52,
         "reliable": true
       }
     ],
     "time_of_day_blitz": [
       {
         "name": "Early morning",
-        "games": 205,
-        "score_pct": 51.2,
-        "average_cpl": 101.6,
+        "games": 210,
+        "score_pct": 51.0,
+        "average_cpl": 100.8,
         "reliable": true
       },
       {
         "name": "Morning",
-        "games": 601,
-        "score_pct": 50.7,
-        "average_cpl": 93.3,
+        "games": 634,
+        "score_pct": 50.2,
+        "average_cpl": 93.1,
         "reliable": true
       },
       {
         "name": "Lunchtime",
-        "games": 325,
-        "score_pct": 51.5,
-        "average_cpl": 101.2,
+        "games": 330,
+        "score_pct": 52.0,
+        "average_cpl": 101.0,
         "reliable": true
       },
       {
         "name": "Afternoon",
-        "games": 811,
-        "score_pct": 50.9,
-        "average_cpl": 95.9,
+        "games": 816,
+        "score_pct": 50.7,
+        "average_cpl": 95.8,
         "reliable": true
       },
       {
         "name": "Evening",
-        "games": 859,
-        "score_pct": 51.5,
+        "games": 871,
+        "score_pct": 51.2,
         "average_cpl": 95.6,
         "reliable": true
       },
       {
         "name": "Late night",
-        "games": 1425,
-        "score_pct": 49.2,
-        "average_cpl": 96.4,
+        "games": 1459,
+        "score_pct": 49.1,
+        "average_cpl": 96.1,
         "reliable": true
       }
     ],
     "day_of_week": [
       {
         "name": "Monday",
-        "games": 1058,
-        "score_pct": 48.9,
-        "average_cpl": 96.0,
+        "games": 1078,
+        "score_pct": 48.6,
+        "average_cpl": 95.7,
         "reliable": true
       },
       {
         "name": "Tuesday",
-        "games": 1068,
-        "score_pct": 52.6,
-        "average_cpl": 98.0,
+        "games": 1082,
+        "score_pct": 52.4,
+        "average_cpl": 98.3,
         "reliable": true
       },
       {
         "name": "Wednesday",
-        "games": 868,
-        "score_pct": 51.4,
-        "average_cpl": 97.2,
+        "games": 896,
+        "score_pct": 51.3,
+        "average_cpl": 96.9,
         "reliable": true
       },
       {
         "name": "Thursday",
-        "games": 1022,
-        "score_pct": 49.1,
-        "average_cpl": 101.0,
+        "games": 1035,
+        "score_pct": 48.9,
+        "average_cpl": 100.7,
         "reliable": true
       },
       {
@@ -204,60 +204,60 @@
       },
       {
         "name": "Saturday",
-        "games": 725,
-        "score_pct": 51.4,
-        "average_cpl": 100.5,
+        "games": 730,
+        "score_pct": 51.7,
+        "average_cpl": 100.3,
         "reliable": true
       },
       {
         "name": "Sunday",
-        "games": 725,
-        "score_pct": 47.3,
-        "average_cpl": 98.5,
+        "games": 745,
+        "score_pct": 47.2,
+        "average_cpl": 98.2,
         "reliable": true
       }
     ],
     "session_game_number": [
       {
         "name": "1",
-        "games": 1685,
+        "games": 1703,
         "score_pct": 49.6,
-        "average_cpl": 98.2,
+        "average_cpl": 98.0,
         "reliable": true
       },
       {
         "name": "2",
-        "games": 1194,
-        "score_pct": 49.4,
-        "average_cpl": 98.7,
+        "games": 1209,
+        "score_pct": 49.3,
+        "average_cpl": 98.5,
         "reliable": true
       },
       {
         "name": "3",
-        "games": 844,
-        "score_pct": 48.3,
-        "average_cpl": 100.9,
+        "games": 858,
+        "score_pct": 48.5,
+        "average_cpl": 100.7,
         "reliable": true
       },
       {
         "name": "4",
-        "games": 587,
-        "score_pct": 45.7,
-        "average_cpl": 101.1,
+        "games": 597,
+        "score_pct": 45.9,
+        "average_cpl": 100.7,
         "reliable": true
       },
       {
         "name": "5",
-        "games": 428,
-        "score_pct": 53.0,
-        "average_cpl": 91.2,
+        "games": 438,
+        "score_pct": 52.7,
+        "average_cpl": 91.1,
         "reliable": true
       },
       {
         "name": "6+",
-        "games": 1665,
-        "score_pct": 53.6,
-        "average_cpl": 97.8,
+        "games": 1698,
+        "score_pct": 53.1,
+        "average_cpl": 97.9,
         "reliable": true
       }
     ]
@@ -265,9 +265,9 @@
   "openings": [
     {
       "name": "Kings Pawn Opening Kings Knight Variation",
-      "games": 293,
-      "score_pct": 53.6,
-      "average_cpl": 104.7
+      "games": 294,
+      "score_pct": 53.4,
+      "average_cpl": 104.8
     },
     {
       "name": "Kings Pawn Opening 1...e5",
@@ -283,45 +283,45 @@
     },
     {
       "name": "Petrovs Defense",
-      "games": 101,
-      "score_pct": 46.5,
-      "average_cpl": 112.7
+      "games": 102,
+      "score_pct": 46.1,
+      "average_cpl": 112.6
     },
     {
       "name": "Scandinavian Defense 2.e5",
-      "games": 95,
-      "score_pct": 58.4,
-      "average_cpl": 90.3
+      "games": 97,
+      "score_pct": 59.3,
+      "average_cpl": 89.8
     },
     {
       "name": "Scandinavian Defense",
-      "games": 93,
-      "score_pct": 44.1,
-      "average_cpl": 104.7
+      "games": 95,
+      "score_pct": 43.2,
+      "average_cpl": 104.1
     },
     {
       "name": "Reti Opening Kingside Fianchetto Variation 2.e4 Bg7",
-      "games": 91,
-      "score_pct": 50.5,
-      "average_cpl": 86.6
+      "games": 93,
+      "score_pct": 49.5,
+      "average_cpl": 86.7
     },
     {
       "name": "Philidor Defense",
-      "games": 85,
-      "score_pct": 47.1,
+      "games": 86,
+      "score_pct": 47.7,
       "average_cpl": 84.6
+    },
+    {
+      "name": "Ponziani Opening",
+      "games": 77,
+      "score_pct": 57.1,
+      "average_cpl": 82.8
     },
     {
       "name": "Petrovs Defense Three Knights Game",
       "games": 77,
       "score_pct": 41.6,
       "average_cpl": 96.5
-    },
-    {
-      "name": "Ponziani Opening",
-      "games": 76,
-      "score_pct": 56.6,
-      "average_cpl": 83.0
     },
     {
       "name": "Modern Defense with 1 e4",
@@ -403,9 +403,9 @@
     },
     {
       "name": "French Defense Knight Variation",
-      "games": 38,
-      "score_pct": 50.0,
-      "average_cpl": 108.7
+      "games": 39,
+      "score_pct": 48.7,
+      "average_cpl": 109.2
     },
     {
       "name": "Center Game",
@@ -432,16 +432,16 @@
       "average_cpl": 111.7
     },
     {
-      "name": "Queens Pawn Opening Zukertort Chigorin Variation",
-      "games": 30,
-      "score_pct": 60.0,
-      "average_cpl": 109.5
+      "name": "Sicilian Defense OKelly Variation",
+      "games": 32,
+      "score_pct": 59.4,
+      "average_cpl": 99.5
     },
     {
-      "name": "Queens Pawn Opening 1...d5",
-      "games": 30,
-      "score_pct": 58.3,
-      "average_cpl": 110.4
+      "name": "Kings Pawn Opening",
+      "games": 31,
+      "score_pct": 51.6,
+      "average_cpl": 99.2
     }
   ],
   "safeguards": {
