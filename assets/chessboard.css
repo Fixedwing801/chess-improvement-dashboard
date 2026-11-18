@@ -14,3 +14,4 @@
 .cl-piece-white{color:#f7f6f2}.cl-piece-black{color:#55565a;stroke:#24272c}
 .cl-board-files{grid-column:2;grid-row:2;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));align-items:center;color:#d4cbb9;font-size:13px;text-align:center}
 @media(max-width:600px){.cl-board-shell{grid-template-columns:16px minmax(0,1fr);grid-template-rows:auto 17px;gap:4px}.cl-board-ranks,.cl-board-files{font-size:11px}.cl-square.cl-selected,.cl-square.cl-hint{box-shadow:inset 0 0 0 3px #e9d36d}.cl-square.cl-target.cl-capture:after{border-width:3px}}
+.cl-piece{object-fit:contain}.cl-board img.cl-piece{display:block}
