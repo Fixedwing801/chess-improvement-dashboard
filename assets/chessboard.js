@@ -36,13 +36,29 @@
         data[n*4+3]=0;
         if(x>0)push(x-1,y);if(x<w-1)push(x+1,y);if(y>0)push(x,y-1);if(y<h-1)push(x,y+1);
       }
-      // The source PNGs also contain detached, low-opacity gold/brown fringe.
-      // Remove only those pixels; the actual white artwork and dark outlines
-      // are neutral/black and are not affected by this colour-and-alpha filter.
+      // Source assets contain detached gold/brown fragments. Retain only
+      // the largest alpha-connected silhouette after background removal.
+      const labels=new Int32Array(w*h), componentStack=[];
+      let componentId=0, largestId=0, largestSize=0;
+      for(let start=0;start<w*h;start++){
+        if(labels[start]||data[start*4+3]===0)continue;
+        componentId++; componentStack.push(start); labels[start]=componentId;
+        let size=0;
+        while(componentStack.length){
+          const n=componentStack.pop(),x=n%w,y=(n/w)|0; size++;
+          const visit=(m)=>{if(!labels[m]&&data[m*4+3]>0){labels[m]=componentId;componentStack.push(m);}};
+          if(x>0)visit(n-1);if(x<w-1)visit(n+1);if(y>0)visit(n-w);if(y<h-1)visit(n+w);
+        }
+        if(size>largestSize){largestSize=size;largestId=componentId;}
+      }
+      // Neutralise chromatic pixels inside the retained silhouette while
+      // preserving alpha, outline, and luminance-based shading.
       for(let i=0;i<w*h;i++){
-        const r=data[i*4],g=data[i*4+1],b=data[i*4+2],a=data[i*4+3];
-        if(a>0&&r>150&&g>130&&b>90&&(r-g)>5&&(g-b)>10){
-          data[i*4+3]=0;
+        if(labels[i]!==largestId){data[i*4+3]=0;continue;}
+        const j=i*4,r=data[j],g=data[j+1],b=data[j+2];
+        if(Math.max(r,g,b)-Math.min(r,g,b)>18){
+          const gray=Math.round(0.299*r+0.587*g+0.114*b);
+          data[j]=data[j+1]=data[j+2]=gray;
         }
       }
       ctx.putImageData(new ImageData(data,w,h),0,0);
