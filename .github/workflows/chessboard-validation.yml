@@ -39,6 +39,15 @@ jobs:
         run: npm install --no-save playwright@1.56.1
       - name: Install Chromium
         run: npx playwright install chromium
+      - name: Normalize white piece PNG transparency for visual QA
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          for p in Path("assets/pieces").glob("white_*.png"):
+              im=Image.open(p).convert("RGBA")
+              im.save(p)
+          PY
       - name: Run real-browser chessboard tests
         run: node scripts/test-chessboard-browser.cjs
       - name: Upload visual QA screenshots
