@@ -16,6 +16,31 @@
     p: '<path d="M50 12c-11 0-18 8-18 19 0 8 4 14 11 18l-7 24H64l-7-24c7-4 11-10 11-18 0-11-7-19-18-19z M20 73h60l8 14H12z"/><path d="M39 50c4 5 8 8 14 10l10 13H37l6-23z" fill="#a2a4a6" stroke="none"/>'
   };
 
+  // Remove only edge-connected near-black background pixels from white-piece PNGs.
+  // Black outline pixels enclosed by the artwork are preserved.
+  function removeEdgeBlackBackground(img) {
+    if (img.dataset.bgProcessed === "true") return;
+    try {
+      const w = img.naturalWidth, h = img.naturalHeight;
+      if (!w || !h) return;
+      const canvas = document.createElement("canvas"); canvas.width=w; canvas.height=h;
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      ctx.drawImage(img,0,0,w,h);
+      const data=ctx.getImageData(0,0,w,h).data;
+      const seen=new Uint8Array(w*h), stack=[];
+      const isBackground=(i)=>data[i*4]<35&&data[i*4+1]<35&&data[i*4+2]<35&&data[i*4+3]>0;
+      const push=(x,y)=>{const n=y*w+x;if(!seen[n]&&isBackground(n)){seen[n]=1;stack.push(n);}};
+      for(let x=0;x<w;x++){push(x,0);push(x,h-1);}
+      for(let y=0;y<h;y++){push(0,y);push(w-1,y);}
+      while(stack.length){const n=stack.pop(),x=n%w,y=(n/w)|0;
+        data[n*4+3]=0;
+        if(x>0)push(x-1,y);if(x<w-1)push(x+1,y);if(y>0)push(x,y-1);if(y<h-1)push(x,y+1);
+      }
+      ctx.putImageData(new ImageData(data,w,h),0,0);
+      img.dataset.bgProcessed="true"; img.src=canvas.toDataURL("image/png");
+    } catch (err) { console.warn("Chessboard background transparency processing skipped",err); }
+  }
+
   function mount(root, options = {}) {
     if (!root) throw new Error("ChessBoard.mount requires a root element.");
     if (typeof options.getGame !== "function") throw new Error("ChessBoard requires getGame().");
@@ -56,6 +81,7 @@
           img.className="cl-piece "+(piece.color==="w"?"cl-piece-white":"cl-piece-black");
           img.alt="";img.setAttribute("aria-hidden","true");img.draggable=false;
           img.src="assets/pieces/"+color+"_"+PIECES[piece.type]+".png";
+          if(color==="white") img.addEventListener("load",()=>removeEdgeBlackBackground(img),{once:true});
           img.onerror=()=>{
             const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");
             svg.setAttribute("viewBox","0 0 100 100");svg.setAttribute("class",img.className);
