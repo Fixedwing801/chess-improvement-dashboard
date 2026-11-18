@@ -5,16 +5,21 @@
   "use strict";
   const FILES = "abcdefgh";
   const PIECES = { k:"king", q:"queen", r:"rook", b:"bishop", n:"knight", p:"pawn" };
-  // Traditional Staunton silhouettes: broad bases, recognisable crowns,
-  // horse-head knights and mitred bishops. Kept as local SVG for reliability.
-  const PIECE_ART = {
-    k: '<path d="M46 4h8v10h10v8H54v10h-8V22H36v-8h10z M50 32c-15 0-27 8-30 20-2 8 2 15 9 20l-7 7h56l-7-7c7-5 11-12 9-20-3-12-15-20-30-20z M18 78h64l8 9H10z"/><path d="M31 49c-5 6-4 13 2 18l-5 8h13c-5-8-6-16-4-25z" fill="#9b9da0" stroke="none"/>',
-    q: '<path d="M18 25l12 13 9-21 11 22 11-22 9 21 12-13-8 45H26z M17 72h66l8 14H9z"/><path d="M13 15a5 5 0 1 0 10 0 5 5 0 1 0-10 0 M44 8a5 5 0 1 0 10 0 5 5 0 1 0-10 0 M75 15a5 5 0 1 0 10 0 5 5 0 1 0-10 0"/><path d="M31 43l9-20 8 22-5 26H30z" fill="#a4a5a7" stroke="none"/>',
-    r: '<path d="M15 12h14v13h8V12h13v13h8V12h14v22H15z M25 34h50l-5 9 6 30H24l6-30z M18 73h64l8 13H10z"/><path d="M36 43h28l-3 27H33z" fill="#a3a4a6" stroke="none"/>',
-    b: '<path d="M50 7C38 19 27 32 28 45c1 11 8 17 17 21l-9 9h28l-9-9c9-4 16-10 17-21C73 32 62 19 50 7z M18 76h64l8 11H10z"/><path d="M50 17l-7 25 9 9-5 15h12l-5-19 5-12z" fill="#a2a4a6" stroke="none"/><path d="M49 15l-7 28" fill="none" stroke="#30343a" stroke-width="4"/>',
-    n: '<path d="M20 76c6-10 10-20 10-31 0-16 10-29 25-37l8 10 15 8-8 11 10 11-12 10-4 18z M18 77h64l8 10H10z"/><path d="M35 31c7-10 15-16 23-19l7 10-8 7c10 8 17 17 14 29-2 8-8 13-17 16l-23-1c8-10 11-19 10-27z" fill="#a1a3a6" stroke="none"/><path d="M37 31q5-6 12-5" fill="none" stroke="#30343a" stroke-width="4"/><circle cx="40" cy="31" r="2.8" fill="#30343a" stroke="none"/>',
-    p: '<path d="M50 12c-11 0-18 8-18 19 0 8 4 14 11 18l-7 24H64l-7-24c7-4 11-10 11-18 0-11-7-19-18-19z M20 73h60l8 14H12z"/><path d="M39 50c4 5 8 8 14 10l10 13H37l6-23z" fill="#a2a4a6" stroke="none"/>'
+  // Staunton artwork adapted from DeepMind OpenSpiel (Apache-2.0).
+  const slab = half => {
+    const l=50-half,r=50+half;
+    return `M50 87.5H${r-3}Q${r} 87.5 ${r} 84.5V83.5Q${r} 80.5 ${r-3} 80.5H${l+3}Q${l} 80.5 ${l} 83.5V84.5Q${l} 87.5 ${l+3} 87.5Z`;
   };
+  const circle = (x,y,r) => `M${x-r} ${y}a${r} ${r} 0 1 0 ${2*r} 0a${r} ${r} 0 1 0 -${2*r} 0z`;
+  const PIECE_ART = {
+    p:[[slab(28),"body"],["M40 51.5C37.5 61.5 32 71 24.5 80.5H75.5C68 71 62.5 61.5 60 51.5Z","body"],["M36 43.5H64Q68 43.5 68 47.5Q68 51.5 64 51.5H36Q32 51.5 32 47.5Q32 43.5 36 43.5Z","body"],[circle(50,30,13.5),"body"],["M36 51.5H64M24.5 80.5H75.5","inner"]],
+    r:[[slab(29),"body"],["M24 80.5H76V76.5C70 75.5 64.5 72 64.5 67L63.5 40.5C63.5 36.5 68 34 72 33.5V18H64.5V24H55.5V18H44.5V24H35.5V18H28V33.5C32 34 36.5 36.5 36.5 40.5L35.5 67C35.5 72 30 75.5 24 76.5Z","body"],["M24 80.5H76M36.5 40.5H63.5M28 33.5H72","line"]],
+    b:[["M22 87.5H78Q81 87.5 81 85C81 82.5 77.5 81.5 73.5 80.5H26.5C22.5 81.5 19 82.5 19 85Q19 87.5 22 87.5Z","body"],["M40 67.5C40 74 34.5 78 26.5 80.5H73.5C65.5 78 60 74 60 67.5Z","body"],["M36 60.5H64Q67.5 60.5 67.5 64Q67.5 67.5 64 67.5H36Q32.5 67.5 32.5 64Q32.5 60.5 36 60.5Z","body"],["M38.5 60.5C27 54 26.5 40.5 35.5 31.5C40.5 26.5 46.5 22 50 17C53.5 22 59.5 26.5 64.5 31.5C73.5 40.5 73 54 61.5 60.5Z","body"],[circle(50,12,5.5),"body"],["M59 34.5L45.5 50","line"],["M36 60.5H64M36 67.5H64M26.5 80.5H73.5","inner"]],
+    n:[[slab(28),"body"],["M31 80.5C31.5 76.5 33 72.5 37 68.5C41 64.5 45 59.5 45.5 52.5C42.5 55.5 38.5 58.5 33 59C30 59.3 27.5 58 26 56C23 57 19 57.2 16.5 56C13.5 54.5 12.5 51 13.5 48.5C15 45 18.5 42.5 22 39.5C28.5 35 34.5 29.5 38 21.5C38.5 16 39 12 40.5 9C43 12 45 14.5 45.5 17.5C46.5 15 48.5 12.5 50.5 11.5C51.5 14 52 16.5 52.5 19.5C62 21.5 70.5 29 74 40C78 52 77 66 75 80.5Z","body"],[circle(37,31.5,2.4),"dot"],[circle(17.5,50,1.5),"dot"],["M54 25.5C62 28 67.5 34 70 42.5C72.5 51 72.5 62 71 74M45.5 52.5C44.5 48 41.5 45 37.5 43.5","line"],["M31 80.5H75","inner"]],
+    q:[[slab(30),"body"],["M23 80.5H77C70 79 65.5 74 64.5 68C64 64.5 64.5 62 66 59.5C73 53.5 81 44 85 30Q78 40 73 42.5Q71 34 68.5 23Q63.5 34 58.5 40Q54 32 50 19Q46 32 41.5 40Q36.5 34 31.5 23Q29 34 27 42.5Q22 40 15 30C19 44 27 53.5 34 59.5C35.5 62 36 64.5 35.5 68C34.5 74 30 79 23 80.5Z","body"],[[circle(15,27,4.6),circle(31.5,19.5,4.6),circle(50,14.5,4.6),circle(68.5,19.5,4.6),circle(85,27,4.6)].join(""),"body"],["M34 59.5C44.5 56.5 55.5 56.5 66 59.5M35.5 68C45 66 55 66 64.5 68M23 80.5H77","line"]],
+    k:[[slab(30),"body"],["M47.5 22V15H42V10H47.5V4.5H52.5V10H58V15H52.5V22Z","body"],["M25 80.5C29 79 31 76 30.5 72L28 64C20 60.5 15 54 15 46.5C15 37.9 21.9 31 30.5 31C37 31 42.5 34.5 45 40C47 41.5 53 41.5 55 40C57.5 34.5 63 31 69.5 31C78.1 31 85 37.9 85 46.5C85 54 80 60.5 72 64L69.5 72C69 76 71 79 75 80.5Z","body"],["M50 21.5C54.5 23.5 58 27.5 58 32.5C58 37 54.5 40.5 50 41.5C45.5 40.5 42 37 42 32.5C42 27.5 45.5 23.5 50 21.5Z","body"],["M21 49C21 42 25.5 37.5 31 37M79 49C79 42 74.5 37.5 69 37M44.5 42C38 47 34.5 55 34 62.5M55.5 42C62 47 65.5 55 66 62.5","line"],["M28 64C42.5 60.5 57.5 60.5 72 64M30.5 72C43.5 70 56.5 70 69.5 72M25 80.5H75","line"]]
+  };
+
 
   // Remove only edge-connected near-black background pixels from white-piece PNGs.
   // Black outline pixels enclosed by the artwork are preserved.
@@ -117,7 +122,18 @@
           svg.setAttribute("class","cl-piece "+(piece.color==="w"?"cl-piece-white":"cl-piece-black"));
           svg.setAttribute("aria-hidden","true");
           svg.setAttribute("focusable","false");
-          svg.innerHTML=PIECE_ART[piece.type];
+          const group=document.createElementNS("http://www.w3.org/2000/svg","g");
+          group.setAttribute("stroke-width","3.3");group.setAttribute("stroke-linecap","round");group.setAttribute("stroke-linejoin","round");
+          PIECE_ART[piece.type].forEach(([d,paint])=>{
+            if(paint==="inner"&&piece.color==="w")return;
+            const path=document.createElementNS("http://www.w3.org/2000/svg","path");
+            path.setAttribute("d",d);
+            if(paint==="body"){path.setAttribute("fill",piece.color==="w"?"#f7f6f2":"#55565a");path.setAttribute("stroke","#30343a");}
+            else if(paint==="dot"){path.setAttribute("fill",piece.color==="w"?"#30343a":"#e5e5e5");path.setAttribute("stroke","none");}
+            else {path.setAttribute("fill","none");path.setAttribute("stroke",piece.color==="w"?"#30343a":"#e5e5e5");}
+            group.append(path);
+          });
+          svg.append(group);
           cell.append(svg);
         }
         cell.addEventListener("click",()=>handleSquare(square));board.append(cell);
