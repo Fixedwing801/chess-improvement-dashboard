@@ -64,7 +64,12 @@
         // alpha, outlines, highlights or detached legitimate details.
         if(a>0){
           const gray=Math.round(0.299*r+0.587*g+0.114*b);
-          data[j]=data[j+1]=data[j+2]=gray;
+          // Keep near-black contour pixels as outlines, but remap the
+          // original sepia/grey fill to a clean warm white. Grayscale alone
+          // preserved the source's dark midtones and made white pieces look
+          // charcoal in the browser screenshots.
+          const neutral=gray<48?gray:Math.round(218+(gray-48)*37/207);
+          data[j]=data[j+1]=data[j+2]=neutral;
         }
       }
       ctx.putImageData(new ImageData(data,w,h),0,0);
