@@ -39,6 +39,8 @@ jobs:
         run: npm install --no-save playwright@1.56.1
       - name: Install Chromium
         run: npx playwright install chromium
+      - name: Install Pillow
+        run: python -m pip install pillow
       - name: Normalize white piece PNG transparency for visual QA
         run: |
           python - <<'PY'
