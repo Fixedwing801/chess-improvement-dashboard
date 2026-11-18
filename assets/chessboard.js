@@ -36,6 +36,15 @@
         data[n*4+3]=0;
         if(x>0)push(x-1,y);if(x<w-1)push(x+1,y);if(y>0)push(x,y-1);if(y<h-1)push(x,y+1);
       }
+      // The source PNGs also contain detached, low-opacity gold/brown fringe.
+      // Remove only those pixels; the actual white artwork and dark outlines
+      // are neutral/black and are not affected by this colour-and-alpha filter.
+      for(let i=0;i<w*h;i++){
+        const r=data[i*4],g=data[i*4+1],b=data[i*4+2],a=data[i*4+3];
+        if(a>0&&a<110&&r>150&&g>130&&b>90&&(r-g)>5&&(g-b)>10){
+          data[i*4+3]=0;
+        }
+      }
       ctx.putImageData(new ImageData(data,w,h),0,0);
       img.dataset.bgProcessed="true"; img.src=canvas.toDataURL("image/png");
     } catch (err) { console.warn("Chessboard background transparency processing skipped",err); }
