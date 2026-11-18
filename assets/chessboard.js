@@ -58,7 +58,11 @@
         const j=i*4;
         if(labels[i]&&componentSizes[labels[i]]<minComponent){data[j+3]=0;continue;}
         const r=data[j],g=data[j+1],b=data[j+2],a=data[j+3];
-        if(a>0&&Math.max(r,g,b)-Math.min(r,g,b)>16){
+        // White Staunton artwork must be neutral white/grey, not sepia.
+        // Convert every retained pixel (not just strongly chromatic pixels)
+        // to luminance; this removes subtle tan casts without changing shape,
+        // alpha, outlines, highlights or detached legitimate details.
+        if(a>0){
           const gray=Math.round(0.299*r+0.587*g+0.114*b);
           data[j]=data[j+1]=data[j+2]=gray;
         }
