@@ -41,7 +41,7 @@
       // are neutral/black and are not affected by this colour-and-alpha filter.
       for(let i=0;i<w*h;i++){
         const r=data[i*4],g=data[i*4+1],b=data[i*4+2],a=data[i*4+3];
-        if(a>0&&a<110&&r>150&&g>130&&b>90&&(r-g)>5&&(g-b)>10){
+        if(a>0&&r>150&&g>130&&b>90&&(r-g)>5&&(g-b)>10){
           data[i*4+3]=0;
         }
       }
