@@ -3,7 +3,7 @@ on:
   pull_request:
     paths:
       - "assets/chessboard.js"
-      - "assets/chessboard.css"
+      - "assets/chessboard.css"\n      - "assets/pieces/*.png"
       - "training-exercise-01.html"
       - "chessboard-demo.html"
       - "scripts/check-inline-scripts.py"
@@ -43,14 +43,24 @@ jobs:
         run: python -m pip install pillow
       - name: Inspect PNG files
         run: file assets/pieces/*.png && ls -l assets/pieces/*.png
-      - name: Normalize white piece PNG transparency for visual QA
+      - name: Repair and normalize white piece PNGs for visual QA
         run: |
           python - <<'PY'
-          from PIL import Image
           from pathlib import Path
+          import struct, zlib
+          from PIL import Image
           for p in Path("assets/pieces").glob("white_*.png"):
-              im=Image.open(p).convert("RGBA")
-              im.save(p)
+              data=p.read_bytes(); out=data[:8]; pos=8
+              while pos < len(data):
+                  length=struct.unpack(">I",data[pos:pos+4])[0]
+                  typ=data[pos+4:pos+8]; chunk=data[pos+8:pos+8+length]
+                  if typ == b"PLTA": typ=b"PLTE"
+                  crc=zlib.crc32(typ+chunk)&0xffffffff
+                  out += struct.pack(">I",length)+typ+chunk+struct.pack(">I",crc)
+                  pos += length+12
+                  if typ == b"IEND": break
+              p.write_bytes(out)
+              Image.open(p).convert("RGBA").save(p)
           PY
       - name: Run real-browser chessboard tests
         run: node scripts/test-chessboard-browser.cjs
