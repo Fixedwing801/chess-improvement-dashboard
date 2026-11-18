@@ -1,5 +1,18 @@
 name: Chessboard validation
 on:
+  push:
+    branches:
+      - "feature/reusable-chessboard"
+    paths:
+      - "assets/chessboard.js"
+      - "assets/chessboard.css"
+      - "assets/pieces/*.png"
+      - "training-exercise-01.html"
+      - "chessboard-demo.html"
+      - "scripts/check-inline-scripts.py"
+      - "scripts/test-chessboard.js"
+      - "scripts/test-chessboard-browser.cjs"
+      - ".github/workflows/chessboard-validation.yml"
   pull_request:
     paths:
       - "assets/chessboard.js"
