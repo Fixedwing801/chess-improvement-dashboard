@@ -32,6 +32,7 @@ const server = http.createServer((req, res) => {
 
     await page.goto("http://127.0.0.1:4173/chessboard-demo.html");
     await page.waitForSelector(".cl-square");
+    await page.waitForFunction(() => [...document.querySelectorAll(".cl-piece-white")].every(img => img.complete && img.dataset.bgProcessed === "true"));
     await page.screenshot({ path: path.join(screenshots, "demo-desktop.png"), fullPage: true });
     assert.equal(await page.locator(".cl-square").count(), 64, "demo renders 64 squares");
     assert.match(await page.locator("#status").innerText(), /White to move/);
@@ -49,6 +50,11 @@ const server = http.createServer((req, res) => {
     await page.locator("#reset").click();
     assert.match(await page.locator("#status").innerText(), /White to move/);
 
+    // Start a fresh page for the mobile visual check so the earlier flip-control
+    // interaction cannot leave the screenshot in Black orientation.
+    await page.reload();
+    await page.waitForSelector(".cl-square");
+    await page.waitForFunction(() => [...document.querySelectorAll(".cl-piece-white")].every(img => img.complete && img.dataset.bgProcessed === "true"));
     await page.setViewportSize({ width: 390, height: 844 });
     const mobile = await page.locator(".cl-board").boundingBox();
     assert.ok(mobile && mobile.width <= 370 && mobile.width > 300, "board fits mobile viewport");
@@ -57,6 +63,7 @@ const server = http.createServer((req, res) => {
 
     await page.goto("http://127.0.0.1:4173/training-exercise-01.html");
     await page.waitForSelector(".cl-square");
+    await page.waitForFunction(() => [...document.querySelectorAll(".cl-piece-white")].every(img => img.complete && img.dataset.bgProcessed === "true"));
     await page.screenshot({ path: path.join(screenshots, "exercise-desktop.png"), fullPage: true });
     assert.equal(await page.locator(".cl-square").count(), 64, "exercise renders 64 squares");
     await page.locator('[data-square="b4"]').click();
