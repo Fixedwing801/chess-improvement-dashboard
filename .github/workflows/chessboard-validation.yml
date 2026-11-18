@@ -62,13 +62,8 @@ jobs:
                   if typ == b"IEND": break
               p.write_bytes(out)
               img=Image.open(p).convert("RGBA")
-              pixels=img.load(); w,h=img.size
-              # Transparentise near-black pixels in these white-piece assets.
-              for y in range(h):
-                  for x in range(w):
-                      r,g,b,a=pixels[x,y]
-                      if max(r,g,b) < 28:
-                          pixels[x,y]=(r,g,b,0)
+              # Keep original pixel content; the live board code must remove
+              # edge-connected background pixels during rendering.
               img.save(p)
           PY
       - name: Run real-browser chessboard tests
