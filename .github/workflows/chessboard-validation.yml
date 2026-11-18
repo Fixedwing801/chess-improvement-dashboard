@@ -64,8 +64,7 @@ jobs:
               img=Image.open(p).convert("RGBA")
               pixels=img.load(); w,h=img.size
               # Remove only dark background pixels connected to the outer edge.
-              if not any(pixels[x,y][3] == 0 for y in range(h) for x in range(w)):
-                  stack=[]
+              stack=[]
                   for x in range(w):
                       stack.extend([(x,0),(x,h-1)])
                   for y in range(h):
