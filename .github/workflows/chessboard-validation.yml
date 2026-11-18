@@ -3,7 +3,8 @@ on:
   pull_request:
     paths:
       - "assets/chessboard.js"
-      - "assets/chessboard.css"\n      - "assets/pieces/*.png"
+      - "assets/chessboard.css"
+      - "assets/pieces/*.png"
       - "training-exercise-01.html"
       - "chessboard-demo.html"
       - "scripts/check-inline-scripts.py"
