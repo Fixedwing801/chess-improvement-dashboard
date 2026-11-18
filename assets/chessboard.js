@@ -36,27 +36,29 @@
         data[n*4+3]=0;
         if(x>0)push(x-1,y);if(x<w-1)push(x+1,y);if(y>0)push(x,y-1);if(y<h-1)push(x,y+1);
       }
-      // Source assets contain detached gold/brown fragments. Retain only
-      // the largest alpha-connected silhouette after background removal.
-      const labels=new Int32Array(w*h), componentStack=[];
-      let componentId=0, largestId=0, largestSize=0;
+      // Preserve all connected artwork: the source pieces include legitimate
+      // detached details. Remove tiny isolated alpha fragments only, then
+      // neutralise gold/brown chroma while preserving luminance and alpha.
+      const labels=new Int32Array(w*h), stack=[];
+      let id=0;
+      const componentSizes=[];
       for(let start=0;start<w*h;start++){
         if(labels[start]||data[start*4+3]===0)continue;
-        componentId++; componentStack.push(start); labels[start]=componentId;
-        let size=0;
-        while(componentStack.length){
-          const n=componentStack.pop(),x=n%w,y=(n/w)|0; size++;
-          const visit=(m)=>{if(!labels[m]&&data[m*4+3]>0){labels[m]=componentId;componentStack.push(m);}};
+        id++; stack.push(start); labels[start]=id; let size=0;
+        while(stack.length){
+          const n=stack.pop(),x=n%w,y=(n/w)|0; size++;
+          const visit=(m)=>{if(!labels[m]&&data[m*4+3]>0){labels[m]=id;stack.push(m);}};
           if(x>0)visit(n-1);if(x<w-1)visit(n+1);if(y>0)visit(n-w);if(y<h-1)visit(n+w);
         }
-        if(size>largestSize){largestSize=size;largestId=componentId;}
+        componentSizes[id]=size;
       }
-      // Neutralise chromatic pixels inside the retained silhouette while
-      // preserving alpha, outline, and luminance-based shading.
+      const largest=Math.max(...componentSizes.slice(1));
+      const minComponent=Math.max(24,Math.floor(largest*0.00015));
       for(let i=0;i<w*h;i++){
-        if(labels[i]!==largestId){data[i*4+3]=0;continue;}
-        const j=i*4,r=data[j],g=data[j+1],b=data[j+2];
-        if(Math.max(r,g,b)-Math.min(r,g,b)>18){
+        const j=i*4;
+        if(labels[i]&&componentSizes[labels[i]]<minComponent){data[j+3]=0;continue;}
+        const r=data[j],g=data[j+1],b=data[j+2],a=data[j+3];
+        if(a>0&&Math.max(r,g,b)-Math.min(r,g,b)>16){
           const gray=Math.round(0.299*r+0.587*g+0.114*b);
           data[j]=data[j+1]=data[j+2]=gray;
         }
