@@ -41,6 +41,8 @@ jobs:
         run: npx playwright install chromium
       - name: Install Pillow
         run: python -m pip install pillow
+      - name: Inspect PNG files
+        run: file assets/pieces/*.png && ls -l assets/pieces/*.png
       - name: Normalize white piece PNG transparency for visual QA
         run: |
           python - <<'PY'
