@@ -65,21 +65,21 @@ jobs:
               pixels=img.load(); w,h=img.size
               # Remove only dark background pixels connected to the outer edge.
               stack=[]
-                  for x in range(w):
-                      stack.extend([(x,0),(x,h-1)])
-                  for y in range(h):
-                      stack.extend([(0,y),(w-1,y)])
-                  seen=set()
-                  while stack:
-                      x,y=stack.pop()
-                      if (x,y) in seen: continue
-                      seen.add((x,y))
-                      r,g,b,a=pixels[x,y]
-                      if a and max(r,g,b) < 55:
-                          pixels[x,y]=(r,g,b,0)
-                          for nx,ny in ((x+1,y),(x-1,y),(x,y+1),(x,y-1)):
-                              if 0<=nx<w and 0<=ny<h and (nx,ny) not in seen:
-                                  stack.append((nx,ny))
+              for x in range(w):
+                  stack.extend([(x,0),(x,h-1)])
+              for y in range(h):
+                  stack.extend([(0,y),(w-1,y)])
+              seen=set()
+              while stack:
+                  x,y=stack.pop()
+                  if (x,y) in seen: continue
+                  seen.add((x,y))
+                  r,g,b,a=pixels[x,y]
+                  if a and max(r,g,b) < 55:
+                      pixels[x,y]=(r,g,b,0)
+                      for nx,ny in ((x+1,y),(x-1,y),(x,y+1),(x,y-1)):
+                          if 0<=nx<w and 0<=ny<h and (nx,ny) not in seen:
+                              stack.append((nx,ny))
               img.save(p)
           PY
       - name: Run real-browser chessboard tests
