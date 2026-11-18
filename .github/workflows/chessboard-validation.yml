@@ -41,3 +41,11 @@ jobs:
         run: npx playwright install chromium
       - name: Run real-browser chessboard tests
         run: node scripts/test-chessboard-browser.cjs
+      - name: Upload visual QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chessboard-visual-qa
+          path: test-screenshots/
+          if-no-files-found: ignore
+          retention-days: 7
